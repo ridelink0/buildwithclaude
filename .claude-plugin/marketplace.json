@@ -2081,6 +2081,33 @@
       ],
       "category": "mcp-servers",
       "source": "./plugins/cohesivity"
+    },
+    {
+      "name": "usage-limits",
+      "description": "Reads how much of your 5-hour and weekly Claude Code limit is left, converts it into turns of headroom rather than a percentage, and plans the work to fit inside it. Detects plan tier, splits spend by model and project, and adds a status line.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Ridelink",
+        "url": "https://github.com/ridelink0"
+      },
+      "homepage": "https://github.com/ridelink0/claude-code-usage-limits",
+      "repository": "https://github.com/ridelink0/claude-code-usage-limits",
+      "license": "MIT",
+      "keywords": [
+        "usage",
+        "limits",
+        "budget",
+        "cost",
+        "tokens",
+        "planning",
+        "claude-code"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "ridelink0/claude-code-usage-limits"
+      },
+      "strict": false
     }
   ]
 }
