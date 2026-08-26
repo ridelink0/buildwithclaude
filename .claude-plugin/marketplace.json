@@ -2108,6 +2108,35 @@
         "repo": "ridelink0/claude-code-usage-limits"
       },
       "strict": false
+    },
+    {
+      "name": "computer-use",
+      "description": "Codex-style computer use for Claude Code. Drives Windows and macOS apps through the accessibility tree instead of screenshots, so it targets exactly, survives display scaling, and costs about 20x fewer tokens. It can also work on the same desktop while you keep working, telling your input apart from its own.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Ridelink",
+        "url": "https://github.com/ridelink0"
+      },
+      "homepage": "https://github.com/ridelink0/claude-computer-use",
+      "repository": "https://github.com/ridelink0/claude-computer-use",
+      "license": "MIT",
+      "keywords": [
+        "computer-use",
+        "codex",
+        "desktop-automation",
+        "windows",
+        "macos",
+        "accessibility",
+        "ui-automation",
+        "gui",
+        "claude-code"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "ridelink0/claude-computer-use"
+      },
+      "strict": false
     }
   ]
 }
