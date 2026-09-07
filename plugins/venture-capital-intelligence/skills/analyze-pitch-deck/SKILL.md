@@ -1,6 +1,6 @@
 ---
 name: analyze-pitch-deck
-description: Activate for ANY pitch deck analysis, feedback, or review request. Triggers include: "analyze this deck", "review my pitch deck", "critique my pitch", "feedback on my slides", "is my deck investor ready", "what's wrong with my pitch", "how would a VC react to this deck", "score my pitch deck", "rate my slides", "improve my deck", "what slides am I missing", "is this pitch compelling". Also triggers when a user pastes slide content, describes their deck structure, or shares a company narrative and asks for investor feedback. Works on claude.ai and Claude Code.
+description: "Activate for ANY pitch deck analysis, feedback, or review request. Triggers include: \"analyze this deck\", \"review my pitch deck\", \"critique my pitch\", \"feedback on my slides\", \"is my deck investor ready\", \"what's wrong with my pitch\", \"how would a VC react to this deck\", \"score my pitch deck\", \"rate my slides\", \"improve my deck\", \"what slides am I missing\", \"is this pitch compelling\". Also triggers when a user pastes slide content, describes their deck structure, or shares a company narrative and asks for investor feedback. Works on claude.ai and Claude Code."
 ---
 
 # Venture Capital Intelligence — Pitch Deck Analyzer
