@@ -4,6 +4,7 @@ import { getGitHubClient } from '@/lib/github/client'
 import { eq, and, sql, inArray } from 'drizzle-orm'
 import { z } from 'zod'
 import { expandSkillCollection } from './skill-expander'
+import { resolveMarketplaceSkills } from './marketplace-skills'
 
 // Plugin schema for GitHub marketplace data
 const PluginSchema = z.object({
@@ -15,6 +16,7 @@ const PluginSchema = z.object({
   category: z.string().optional().nullable(),
   keywords: z.array(z.string()).optional().nullable(),
   skills: z.array(z.string()).optional().nullable(),
+  source: z.unknown().optional(),
   author: z.string().optional().nullable(),
   gitUrl: z.string().optional().nullable(),
   stars: z.number().optional().default(0),
@@ -112,6 +114,7 @@ async function fetchGitHubMarketplacePlugins(repoFullName: string): Promise<Plug
             category: plugin.category,
             keywords: plugin.keywords || plugin.tags,
             skills: plugin.skills,
+            source: plugin.source,
             author: plugin.author || repoFullName.split('/')[0],
             gitUrl: plugin.repository || `https://github.com/${repoFullName}`,
             stars: 0,
@@ -483,16 +486,15 @@ export async function indexPlugins(
         })
 
         if (plugin.skills && plugin.skills.length > 0) {
-          for (const skillName of plugin.skills) {
-            if (!skillName) continue
+          const declaredSkills = await resolveMarketplaceSkills(
+            plugin, repoPath, (repo, path) => github.fetchFileContent(repo, path),
+          )
+          for (const skill of declaredSkills) {
             skillRecords.push({
-              name: skillName,
-              slug: createSlug(skillName),
+              ...skill,
               marketplaceId: marketplace.id,
               marketplaceName: marketplace.displayName,
               repository: plugin.gitUrl || marketplace.repository,
-              description: `Skill from ${plugin.name}`,
-              category: plugin.category,
               lastIndexedAt: now,
             })
           }

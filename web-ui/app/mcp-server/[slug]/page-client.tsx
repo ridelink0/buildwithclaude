@@ -14,6 +14,7 @@ import {
   getMCPCategoryDisplayName,
   getMCPCategoryIcon
 } from '@/lib/mcp-types'
+import { formatDate } from '@/lib/format-date'
 
 interface MCPServerPageClientProps {
   server: MCPServer
@@ -41,9 +42,9 @@ export default function MCPServerPageClient({ server }: MCPServerPageClientProps
 
   return (
     <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="container mx-auto px-4 pt-8 pb-12 max-w-4xl">
         {/* Back button */}
-        <Link href="/mcp-servers" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6">
+        <Link href="/mcp-servers" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary -mt-1 py-1 mb-5">
           <ArrowLeft className="h-4 w-4" />
           Back to MCP Servers
         </Link>
@@ -112,9 +113,9 @@ export default function MCPServerPageClient({ server }: MCPServerPageClientProps
                   </div>
                 )}
                 {server.stats.last_updated && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="text-muted-foreground">Last Updated</span>
-                    <span className="font-mono">{server.stats.last_updated}</span>
+                    <span className="font-mono break-all">{server.stats.last_updated}</span>
                   </div>
                 )}
               </CardContent>
@@ -172,11 +173,7 @@ export default function MCPServerPageClient({ server }: MCPServerPageClientProps
                       {server.source_registry?.url === server.sources.docker && 
                        server.source_registry.last_fetched && (
                         <div className="text-xs text-muted-foreground mt-1 ml-6">
-                          Last fetched: {new Date(server.source_registry.last_fetched).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: '2-digit',
-                            day: '2-digit'
-                          })}
+                          Last fetched: {formatDate(server.source_registry.last_fetched, 'numeric')}
                         </div>
                       )}
                     </div>
@@ -240,11 +237,7 @@ export default function MCPServerPageClient({ server }: MCPServerPageClientProps
                       </a>
                       {server.source_registry.last_fetched && (
                         <div className="text-xs text-muted-foreground mt-1">
-                          Last fetched: {new Date(server.source_registry.last_fetched).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: '2-digit',
-                            day: '2-digit'
-                          })}
+                          Last fetched: {formatDate(server.source_registry.last_fetched, 'numeric')}
                         </div>
                       )}
                     </div>
@@ -301,7 +294,7 @@ export default function MCPServerPageClient({ server }: MCPServerPageClientProps
                           Install using Claude Code CLI <span className="text-primary font-medium">(Recommended)</span>:
                         </p>
                         <div className="bg-muted p-4 rounded-lg overflow-x-auto flex items-start justify-between">
-                          <code className="font-mono text-sm whitespace-pre-wrap break-all">{claudeCommand}</code>
+                          <code className="min-w-0 font-mono text-sm whitespace-pre-wrap wrap-anywhere">{claudeCommand}</code>
                           <Button
                             size="sm"
                             variant="ghost"
@@ -443,7 +436,7 @@ export default function MCPServerPageClient({ server }: MCPServerPageClientProps
 
             {server.verification.last_tested && (
               <div>
-                <span className="font-semibold">Last Tested:</span> {server.verification.last_tested}
+                <span className="font-semibold">Last Tested:</span> {formatDate(server.verification.last_tested)}
               </div>
             )}
 

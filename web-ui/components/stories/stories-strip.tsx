@@ -55,7 +55,6 @@ export function StoriesStrip({ stories }: StoriesStripProps) {
                 color: 'hsl(0 0% 98%)',
                 margin: 0,
                 fontWeight: 400,
-                textWrap: 'balance',
               }}
             >
               How builders are using Claude.
@@ -118,10 +117,9 @@ export function StoriesStrip({ stories }: StoriesStripProps) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
             gap: 20,
           }}
-          className="stories-strip-grid"
+          className="stories-strip-grid grid-cols-1 lg:grid-cols-3"
         >
           {stories.slice(0, 3).map(s => (
             <StoryCard key={s.slug} story={s} density="roomy" />

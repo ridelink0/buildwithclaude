@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:unit": "node --experimental-strip-types --test lib/indexer/search-pagination.test.ts lib/search/search-hydration.test.ts lib/search/search-types.test.ts lib/stories-server.test.ts",
+    "test:unit": "node --experimental-strip-types --test lib/indexer/search-pagination.test.ts lib/indexer/marketplace-skills.test.ts lib/indexer/mcp-server-names.test.ts lib/search/search-hydration.test.ts lib/search/search-types.test.ts lib/stories-server.test.ts",
     "generate-registry": "node ../scripts/generate-registry.js",
     "index:skills": "node scripts/run-skills-index.js",
     "index:cron": "node scripts/run-indexer.js"
@@ -20,7 +20,6 @@
     "@radix-ui/react-icons": "^1.3.2",
     "@radix-ui/react-navigation-menu": "^1.2.15",
     "@radix-ui/react-popover": "^1.1.15",
-    "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.8",

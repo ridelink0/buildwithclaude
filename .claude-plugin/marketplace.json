@@ -25,6 +25,98 @@
   },
   "plugins": [
     {
+      "name": "mobile-debug-tools",
+      "description": "Inspect and interact with Android and iOS apps through the mobile-debug-mcp server and a usage skill.",
+      "version": "0.0.1",
+      "author": {
+        "name": "mobile-debug-tools contributors",
+        "url": "https://github.com/clivejefferies"
+      },
+      "repository": "https://github.com/clivejefferies/mobile-debug-tools",
+      "license": "Apache-2.0",
+      "keywords": [
+        "android",
+        "ios",
+        "mobile-debugging",
+        "mcp",
+        "claude-code"
+      ],
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/clivejefferies/mobile-debug-tools.git",
+        "path": "agent-plugin",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "pine",
+      "description": "Connect Claude to Pine AI to handle real-world tasks and follow up on progress and results.",
+      "version": "0.1.1",
+      "author": {
+        "name": "Pine AI",
+        "url": "https://pine.im"
+      },
+      "homepage": "https://pine.im",
+      "repository": "https://github.com/19PINE-AI/pine-mcp-server",
+      "license": "MIT",
+      "keywords": [
+        "pine",
+        "pine-ai",
+        "personal-assistant",
+        "real-world-tasks",
+        "task-automation",
+        "mcp"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/19PINE-AI/pine-mcp-server.git",
+        "path": "plugins/pine",
+        "sha": "3569b75feaec08e31559504231281b386c2226e3"
+      }
+    },
+    {
+      "name": "claude-imagine",
+      "description": "Generate and edit AI images and videos from inside Claude Code through one remote MCP server. Nano Banana 2, GPT Image 2.5, Seedream 4.5, Flux 2 Pro and Z-Image for stills; Veo, Kling, Seedance, Grok Imagine and MiniMax for clips. quote_generation prices any call before you spend, and failed generations are refunded automatically. OAuth via /mcp; no API key to paste.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Claude Imagine",
+        "url": "https://claudeimagine.com"
+      },
+      "homepage": "https://claudeimagine.com/mcp",
+      "repository": "https://github.com/lumian2015/claudeimagine-mcp",
+      "license": "MIT",
+      "keywords": [
+        "image-generation",
+        "video-generation",
+        "image-editing",
+        "nano-banana",
+        "mcp"
+      ],
+      "category": "creative",
+      "source": "./plugins/claude-imagine"
+    },
+    {
+      "name": "crosstalk",
+      "description": "Let a Claude session in one repo delegate work to a Claude session in another repo, with a request format that avoids follow-up round trips. Adds /ask-peer plus skills for sending and answering cross-repo requests.",
+      "version": "0.1.0",
+      "author": {
+        "name": "d7omdev",
+        "url": "https://github.com/d7omdev"
+      },
+      "repository": "https://github.com/d7omdev/crosstalk",
+      "keywords": [
+        "cross-repo",
+        "delegation",
+        "multi-session",
+        "frontend-backend",
+        "api-contract"
+      ],
+      "category": "development",
+      "source": "./plugins/crosstalk"
+    },
+    {
       "name": "tlsradar",
       "description": "SSL/TLS certificate scanning, free Let's Encrypt issuance (private key stays local), and ongoing certificate-expiry monitoring — through a single remote MCP server. Free anonymous scans and cert issuance need no account; OAuth via /mcp unlocks ongoing monitoring.",
       "version": "0.6.1",
@@ -230,13 +322,13 @@
     },
     {
       "name": "archcore",
-      "description": "Make your AI agent code with your project's architecture, rules, and decisions. Git-native context (folder conventions, ADRs, team standards) so new code lands in the right place and decisions persist across sessions and agents.",
-      "version": "0.4.4",
+      "description": "Spec-driven development and context engineering for AI coding agents, backed by project context in Git.",
+      "version": "0.14.4",
       "author": {
         "name": "Archcore",
         "url": "https://github.com/archcore-ai"
       },
-      "repository": "https://github.com/archcore-ai/plugin",
+      "repository": "https://github.com/archcore-ai/archcore",
       "license": "Apache-2.0",
       "keywords": [
         "claude-code",
@@ -260,8 +352,10 @@
       ],
       "category": "development",
       "source": {
-        "source": "github",
-        "repo": "archcore-ai/plugin"
+        "source": "git-subdir",
+        "url": "https://github.com/archcore-ai/archcore.git",
+        "path": "plugins/archcore",
+        "ref": "main"
       }
     },
     {
@@ -1770,7 +1864,7 @@
     {
       "name": "kegg-mcp-server",
       "description": "Query the KEGG bioinformatics database — pathways, genes, compounds, drugs, enzymes, diseases, reactions, and more via 34 read-only MCP tools. No API key required.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "author": {
         "name": "Lucas Servi",
         "url": "https://github.com/Lucas-Servi"
@@ -1820,7 +1914,7 @@
     {
       "name": "claude-prospector",
       "description": "Claude Code efficiency and hygiene toolkit. Surfaces token spend across the 5h / 7d / Sonnet-7d billing windows with per-model / per-agent / per-skill attribution, and audits your effective Claude Code configuration (custom + plugin agents and skills) for overlap and conflicts. Ships an interactive dashboard, a conversational usage-analysis skill, and a structured config-audit skill.",
-      "version": "0.10.0",
+      "version": "0.16.1",
       "author": {
         "name": "Christopher Beaulieu",
         "url": "https://github.com/glitchwerks"
@@ -2081,6 +2175,2895 @@
       ],
       "category": "mcp-servers",
       "source": "./plugins/cohesivity"
+    },
+    {
+      "name": "usage-limits",
+      "description": "Reads how much of your 5-hour and weekly Claude Code limit is left, converts it into turns of headroom rather than a percentage, and plans the work to fit inside it. Detects plan tier, splits spend by model and project, and adds a status line.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Ridelink",
+        "url": "https://github.com/ridelink0"
+      },
+      "homepage": "https://github.com/ridelink0/claude-code-usage-limits",
+      "repository": "https://github.com/ridelink0/claude-code-usage-limits",
+      "license": "MIT",
+      "keywords": [
+        "usage",
+        "limits",
+        "budget",
+        "cost",
+        "tokens",
+        "planning",
+        "claude-code"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "ridelink0/claude-code-usage-limits"
+      },
+      "strict": false
+    },
+    {
+      "name": "computer-use",
+      "description": "Codex-style computer use for Claude Code. Drives Windows and macOS apps through the accessibility tree instead of screenshots, so it targets exactly, survives display scaling, and costs about 20x fewer tokens. It can also work on the same desktop while you keep working, telling your input apart from its own.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Ridelink",
+        "url": "https://github.com/ridelink0"
+      },
+      "homepage": "https://github.com/ridelink0/claude-computer-use",
+      "repository": "https://github.com/ridelink0/claude-computer-use",
+      "license": "MIT",
+      "keywords": [
+        "computer-use",
+        "codex",
+        "desktop-automation",
+        "windows",
+        "macos",
+        "accessibility",
+        "ui-automation",
+        "gui",
+        "claude-code"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "ridelink0/claude-computer-use"
+      },
+      "strict": false
+    },
+    {
+      "name": "suede-skills",
+      "description": "74 skills for Claude Code and Codex. A build DAG researches your repo, fans out disjoint lanes, and refutes its own review before anything lands. A blunt A-F ship grade blocks the bad merge instead of complimenting it. The same folder designs the page, writes the copy, and ships native iOS and Android builds.",
+      "version": "0.16.0",
+      "author": {
+        "name": "Jason Colapietro",
+        "url": "https://github.com/JasonColapietro"
+      },
+      "homepage": "https://skills.suedeai.ai/",
+      "repository": "https://github.com/JasonColapietro/suede-creator-skills",
+      "license": "MIT AND BSD-3-Clause",
+      "keywords": [
+        "agent-skills",
+        "multi-agent",
+        "agent-orchestration",
+        "code-review",
+        "ship-gate",
+        "ci",
+        "ai-eval",
+        "design",
+        "seo",
+        "ios",
+        "android",
+        "claude-code",
+        "codex"
+      ],
+      "category": "orchestration",
+      "source": {
+        "source": "github",
+        "repo": "JasonColapietro/suede-creator-skills"
+      },
+      "strict": false
+    },
+    {
+      "name": "phaneslight",
+      "description": "Multi-agent orchestration and project-memory system for Claude Code. One command turns a repository into a wired multi-agent environment: a project-specific agent roster, a documentation and session-summary tree, a tested script library, and enforcement hooks that hold size and stamp discipline at the harness layer. Re-runnable, so the setup grows with the codebase.",
+      "author": {
+        "name": "Aloim",
+        "url": "https://github.com/Aloim"
+      },
+      "homepage": "https://github.com/Aloim/phaneslightplugin",
+      "repository": "https://github.com/Aloim/phaneslightplugin",
+      "license": "CC-BY-NC-4.0",
+      "keywords": [
+        "orchestration",
+        "multi-agent",
+        "subagents",
+        "project-memory",
+        "documentation",
+        "hooks",
+        "bootstrap",
+        "code-quality",
+        "claude-code"
+      ],
+      "category": "orchestration",
+      "version": "3.7.2",
+      "source": {
+        "source": "github",
+        "repo": "Aloim/phaneslightplugin"
+      }
+    },
+    {
+      "name": "curviate",
+      "description": "Agent skills for driving LinkedIn work through the Curviate CLI: profiles and companies, search, inbox and messaging, posts and comments, network, job postings, and the Sales Navigator and Recruiter surfaces.",
+      "author": {
+        "name": "Curviate",
+        "url": "https://curviate.com"
+      },
+      "homepage": "https://docs.curviate.com",
+      "repository": "https://github.com/curviate/curviate-plugin",
+      "license": "MIT",
+      "keywords": [
+        "curviate",
+        "linkedin",
+        "cli",
+        "agents",
+        "outreach",
+        "recruiting",
+        "sourcing"
+      ],
+      "category": "productivity",
+      "version": "0.1.0",
+      "source": {
+        "source": "github",
+        "repo": "curviate/curviate-plugin"
+      }
+    },
+    {
+      "name": "isitdone",
+      "description": "Don't let Claude say \"done\" until the tests actually pass. A Stop hook runs the repository's real test, typecheck and lint commands and blocks the turn until they pass; a PostToolUse hook warns when an edit weakened a test; a skill teaches Claude to verify before claiming completion. No LLM calls, no network.",
+      "author": {
+        "name": "raimondasl",
+        "url": "https://github.com/raimondasl"
+      },
+      "homepage": "https://github.com/raimondasl/isitdone",
+      "repository": "https://github.com/raimondasl/isitdone",
+      "license": "MIT",
+      "keywords": [
+        "testing",
+        "verification",
+        "stop-hook",
+        "hooks",
+        "quality",
+        "ci"
+      ],
+      "category": "development",
+      "version": "0.5.2",
+      "source": {
+        "source": "github",
+        "repo": "raimondasl/isitdone"
+      }
+    },
+    {
+      "name": "yylo-skills",
+      "description": "Reusable agent skills maintained by YYLO. The canonical, independently versioned source for skills used by YYLO CLI and YYLO Ledger: ledger task management, wiki, workflow and artifact records, project understanding, planning, and the Ralph execution loop.",
+      "author": {
+        "name": "YYLO",
+        "url": "https://yylo.dev"
+      },
+      "homepage": "https://github.com/yylo-dev/yylo-skills",
+      "repository": "https://github.com/yylo-dev/yylo-skills",
+      "license": "MIT",
+      "keywords": [
+        "skills",
+        "agent-skills",
+        "yylo",
+        "ledger",
+        "kanban",
+        "task-management",
+        "claude-code",
+        "codex",
+        "pi"
+      ],
+      "category": "skills",
+      "version": "2.0.3",
+      "source": {
+        "source": "github",
+        "repo": "yylo-dev/yylo-skills"
+      }
+    },
+    {
+      "name": "traderspy-mcp",
+      "description": "TraderSpy — Read-only smart money tracking, AI trading signals, and elite trader leaderboard for crypto futures. Track whale positions across Binance, Hyperliquid, Bybit, and OKX. No order or withdrawal tools.",
+      "author": {
+        "name": "TraderSpy",
+        "url": "https://traderspy.app"
+      },
+      "homepage": "https://traderspy.app",
+      "repository": "https://github.com/target1m/traderspy-mcp",
+      "license": "MIT",
+      "keywords": [
+        "crypto",
+        "trading",
+        "smart-money",
+        "signals",
+        "binance",
+        "hyperliquid",
+        "bybit",
+        "okx",
+        "mcp",
+        "market-research"
+      ],
+      "category": "finance",
+      "version": "1.7.0",
+      "source": {
+        "source": "github",
+        "repo": "target1m/traderspy-mcp"
+      }
+    },
+    {
+      "name": "papi",
+      "description": "Persistent project management inside your AI coding tool. PAPI turns a plan into a cycle of scoped tasks, hands each one to your agent with a build spec, records what actually happened, and keeps every decision alive across sessions — so a new session resumes where the last one stopped instead of starting from nothing. Connects to the hosted PAPI server over OAuth; nothing runs locally.",
+      "author": {
+        "name": "PAPI",
+        "url": "https://getpapi.ai"
+      },
+      "homepage": "https://getpapi.ai",
+      "repository": "https://github.com/getpapi/papi",
+      "license": "MIT",
+      "keywords": [
+        "papi",
+        "project-management",
+        "planning",
+        "task-management",
+        "context",
+        "mcp",
+        "productivity",
+        "developer-tools"
+      ],
+      "category": "productivity",
+      "version": "0.7.85",
+      "source": {
+        "source": "github",
+        "repo": "getpapi/papi"
+      }
+    },
+    {
+      "name": "active-memory",
+      "description": "Switch to a fresh Claude chat without losing a single rule, correction or number. /amhandoff writes a complete handoff file, and a code word plus checkpoints warn you when it is time to switch.",
+      "author": {
+        "name": "Klopyy",
+        "url": "https://github.com/Klopyy"
+      },
+      "homepage": "https://github.com/Klopyy/active-memory",
+      "repository": "https://github.com/Klopyy/active-memory",
+      "license": "MIT",
+      "keywords": [
+        "handoff",
+        "context",
+        "long-chats",
+        "chat-memory",
+        "checkpoint",
+        "productivity"
+      ],
+      "category": "productivity",
+      "version": "0.2.4",
+      "source": {
+        "source": "github",
+        "repo": "Klopyy/active-memory"
+      }
+    },
+    {
+      "name": "carrick",
+      "description": "Claude Code plugin for Carrick, which indexes TypeScript codebases across service and repository boundaries. After each edit it adds the file's routes, calls, and cross-service type mismatches to the session, and it registers Carrick's language server. It pairs with the Carrick MCP server, which lets agents search functions by intent rather than name.",
+      "author": {
+        "name": "Carrick",
+        "url": "https://carrick.tools"
+      },
+      "homepage": "https://carrick.tools",
+      "repository": "https://github.com/carrick-tools/carrick",
+      "license": "Elastic-2.0",
+      "keywords": [
+        "typescript",
+        "mcp",
+        "api-contracts",
+        "monorepo",
+        "microservices",
+        "coding-agents",
+        "language-server"
+      ],
+      "category": "development",
+      "version": "0.3.93",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/carrick-tools/carrick.git",
+        "path": "plugin",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "production-fast-api-template",
+      "description": "Production-ready standards for a scalable, unified FastAPI + RAG + Agentic AI backend on AWS ECS Fargate: project structure, async execution, Pydantic and structured outputs, API conventions, guardrails, AI evaluation (DeepEval, Ragas), API security and LLM/agent security.",
+      "version": "0.1.0",
+      "author": {
+        "name": "TrishamBP",
+        "url": "https://github.com/TrishamBP"
+      },
+      "license": "MIT",
+      "keywords": [
+        "fastapi",
+        "rag",
+        "agents",
+        "pydantic",
+        "ecs-fargate",
+        "evaluation",
+        "deepeval",
+        "ragas",
+        "security",
+        "owasp"
+      ],
+      "category": "development",
+      "source": "./plugins/production-fast-api-template"
+    },
+    {
+      "name": "apmzoom-dongdaemun",
+      "description": "Search Dongdaemun (Seoul) wholesale fashion with apMZoomAI: items, new arrivals and stalls by building and floor, with links back to apMZoomAI. A read-only remote MCP server plus a sourcing skill; no prices or contact details.",
+      "version": "1.0.0",
+      "author": {
+        "name": "apM Hwashin Co., Ltd.",
+        "url": "https://www.apmzoom.com"
+      },
+      "homepage": "https://www.apmzoom.com",
+      "repository": "https://github.com/apmleokeo-gif/apmzoom-mcp",
+      "license": "MIT",
+      "keywords": [
+        "mcp",
+        "fashion",
+        "wholesale",
+        "dongdaemun",
+        "seoul",
+        "korea",
+        "sourcing",
+        "b2b"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/apmleokeo-gif/apmzoom-mcp.git",
+        "path": "plugins/apmzoom-dongdaemun",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "feedbacks",
+      "description": "Read visual website feedback, marked screenshots, recordings and team discussion through a scoped MCP connection. Includes review-feedback and manage-feedbacks-context skills. Requires a Feedbacks server, Node 22.12+ or 24 and Git.",
+      "version": "0.2.1",
+      "author": {
+        "name": "Softinator TechLabs",
+        "url": "https://softinator.ai"
+      },
+      "homepage": "https://feedbacks.softinator.ai",
+      "repository": "https://github.com/Softinator-TechLabs/feedbacks-oss",
+      "license": "Apache-2.0",
+      "keywords": [
+        "feedback",
+        "screenshots",
+        "mcp",
+        "website-review"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Softinator-TechLabs/feedbacks-plugins.git",
+        "path": "claude/feedbacks",
+        "ref": "v0.2.1"
+      }
+    },
+    {
+      "name": "postel",
+      "description": "Find what's going viral in your niche, write your version in your own voice, and schedule it to X, LinkedIn, Bluesky, Mastodon, YouTube and TikTok through your Postel account. A remote MCP server (OAuth) plus a writing skill.",
+      "version": "1.2.0",
+      "author": {
+        "name": "Postel",
+        "url": "https://www.postel.app"
+      },
+      "homepage": "https://www.postel.app/postel-mcp-server?utm_source=buildwithclaude&utm_medium=listing&utm_campaign=agent-distribution",
+      "repository": "https://github.com/robinfaraj/postel-mcp",
+      "license": "MIT",
+      "keywords": [
+        "mcp",
+        "social-media",
+        "twitter",
+        "x",
+        "linkedin",
+        "bluesky",
+        "mastodon",
+        "scheduling",
+        "writing"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "robinfaraj/postel-mcp"
+      }
+    },
+    {
+      "name": "symbioza",
+      "description": "Run a GPU job under a hard dollar cap and collect the files it writes.",
+      "author": {
+        "name": "Symbioza",
+        "url": "https://symbioza.dev"
+      },
+      "homepage": "https://symbioza.dev",
+      "repository": "https://github.com/symbioza/claude-plugin",
+      "license": "MIT",
+      "keywords": [
+        "gpu",
+        "cloud-gpu",
+        "mcp",
+        "fine-tuning",
+        "training",
+        "evaluation",
+        "batch-inference",
+        "spending-limit"
+      ],
+      "category": "mcp-servers",
+      "version": "0.3.1",
+      "source": {
+        "source": "github",
+        "repo": "symbioza/claude-plugin"
+      }
+    },
+    {
+      "name": "publish-fun",
+      "description": "Submit, revise and track research papers at Publish.fun, an AI-reviewed research journal, and cite published papers. Bundles the journal's remote MCP server and its agent skill. Reading and citing need no key; submitting needs an API key from an ORCID-verified account.",
+      "author": {
+        "name": "Publish.fun",
+        "url": "https://publish.fun"
+      },
+      "homepage": "https://publish.fun",
+      "repository": "https://github.com/publishfun/agent-kit",
+      "license": "MIT",
+      "keywords": [
+        "research",
+        "journal",
+        "peer-review",
+        "papers",
+        "citation",
+        "mcp",
+        "science"
+      ],
+      "category": "research",
+      "version": "1.0.202610020737",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/publishfun/agent-kit.git",
+        "path": "plugins/publish-fun",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "ti-edgeai-skills",
+      "description": "Train, compile, deploy and profile neural networks on Texas Instruments Edge AI processors (C7x/MMA with TIDL: TDA4VM, AM68A, AM69A, AM67A, AM62A). Five skills cover TIDL compilation and int8 calibration in Docker, host-vs-board output checks, edgeai-gst-apps configs and per-layer profiling. Asks before any board-state change.",
+      "version": "0.1.0",
+      "author": {
+        "name": "saeedahmadicp",
+        "url": "https://github.com/saeedahmadicp"
+      },
+      "homepage": "https://github.com/saeedahmadicp/ti-edgeai-skills",
+      "repository": "https://github.com/saeedahmadicp/ti-edgeai-skills",
+      "license": "MIT",
+      "keywords": [
+        "texas-instruments",
+        "tda4vm",
+        "tidl",
+        "edge-ai",
+        "embedded",
+        "jacinto",
+        "onnx",
+        "quantization",
+        "gstreamer",
+        "skills"
+      ],
+      "category": "development",
+      "source": {
+        "source": "github",
+        "repo": "saeedahmadicp/ti-edgeai-skills"
+      }
+    },
+    {
+      "name": "watch-for-me",
+      "description": "Watch any video (YouTube, X, Instagram, TikTok, local files) on-device: local speech transcription plus keyframes read by your agent, several videos in parallel.",
+      "version": "0.1.4",
+      "author": {
+        "name": "Deepmark",
+        "url": "https://usedeepmark.com"
+      },
+      "homepage": "https://github.com/usedeepmark/watch-for-me",
+      "repository": "https://github.com/usedeepmark/watch-for-me",
+      "license": "MIT",
+      "keywords": [
+        "video",
+        "transcription",
+        "keyframes",
+        "yt-dlp",
+        "local-first",
+        "skills"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "usedeepmark/watch-for-me"
+      }
+    },
+    {
+      "name": "voicemoat-skills",
+      "description": "Twenty-six free skills for writing on LinkedIn and Twitter: write in your voice, audit a draft before you publish, draft comments, fix opening lines and endings, read your numbers and plan the week. They need no account; connecting VoiceMoat (Pro or Enterprise) adds a voice profile trained on your own published posts and a Voice Match score.",
+      "version": "1.0.4",
+      "author": {
+        "name": "VoiceMoat",
+        "url": "https://voicemoat.com"
+      },
+      "homepage": "https://voicemoat.com/claude-skills",
+      "repository": "https://github.com/prateeks367/voicemoat-skills",
+      "license": "MIT",
+      "keywords": [
+        "linkedin",
+        "twitter",
+        "writing",
+        "personal-branding",
+        "social-media",
+        "content-strategy",
+        "skills"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "prateeks367/voicemoat-skills"
+      }
+    },
+    {
+      "name": "nibbl",
+      "description": "A tamagotchi-style pixel pet in a band above the prompt, built on function hooks. It reacts to tool calls, passing checks and commits, and adds a /nibbl command. Uses zero model tokens; syncs event types and times plus a hashed machine id to getnibbl.pages.dev.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nurmukhammed Omirzak",
+        "url": "https://github.com/nuromirzak"
+      },
+      "homepage": "https://getnibbl.pages.dev",
+      "repository": "https://github.com/nuromirzak/nibbl",
+      "license": "MIT",
+      "keywords": [
+        "pet",
+        "tamagotchi",
+        "pixel-art",
+        "function-hooks",
+        "mod"
+      ],
+      "category": "monitoring",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/nuromirzak/nibbl.git",
+        "path": "plugin",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "bettercallgpt",
+      "description": "Put this Claude Code session on a full-duplex voice call (Azure GPT Realtime or GPT-Live, macOS): talk while it codes, interrupt anytime, hear results read back. Voice never approves permission prompts; they stay on the keyboard.",
+      "version": "0.1.1",
+      "author": {
+        "name": "StoryArcade",
+        "url": "https://github.com/storyarcade"
+      },
+      "homepage": "https://github.com/insta-fusion/bettercallgpt",
+      "repository": "https://github.com/insta-fusion/bettercallgpt",
+      "license": "MIT",
+      "keywords": [
+        "voice",
+        "realtime",
+        "speech",
+        "claude-code",
+        "macos"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/insta-fusion/bettercallgpt.git",
+        "path": "plugin",
+        "sha": "4be97a02bf08be28c9d7097e08902cf1379293b4"
+      }
+    },
+    {
+      "name": "midpoint-card-prices",
+      "description": "Trading card market prices and grading ROI through one remote MCP server. Raw and graded prices for 1.5M+ Pokémon, Magic, Yu-Gi-Oh!, One Piece, Lorcana and sports cards, PSA 9 and PSA 10 premiums, net profit after grading fees, price history, 30-day movers and priced set checklists. Read-only, no account, no API key.",
+      "version": "1.0.1",
+      "author": {
+        "name": "Midpoint",
+        "url": "https://www.cardcenteringtool.com"
+      },
+      "homepage": "https://www.cardcenteringtool.com/mcp",
+      "repository": "https://github.com/kolourr/midpoint-mcp",
+      "license": "MIT",
+      "keywords": [
+        "mcp",
+        "trading-cards",
+        "pokemon",
+        "sports-cards",
+        "card-prices",
+        "card-grading",
+        "psa",
+        "collectibles"
+      ],
+      "category": "mcp-servers",
+      "source": "./plugins/midpoint-card-prices"
+    },
+    {
+      "name": "kumi",
+      "description": "A coordinated engineering team of named AI specialists that remembers your project between sessions. Call yui to route work, or call any specialist directly: Go (jaan, siim, mart), Angular (liis, kadi, tiiu), iOS (ren, shu, ryo), Python (eero, anu, ivo), React (noa, rui, aki), SQL (saku), NoSQL (remo), architecture for any stack (kai), process management (enn), and DevOps/infra (sora). Each ships as both a skill and a subagent. Bundled hooks capture finished work when a session ends and say at the next session start that saved work exists, and record per-session and per-agent token and time usage. Every specialist follows the same discipline: read context first, make the smallest correct change, verify.",
+      "version": "1.5.1",
+      "author": {
+        "name": "Anna Veretennykova",
+        "url": "https://github.com/annavetech"
+      },
+      "homepage": "https://github.com/annavetech/kumi",
+      "repository": "https://github.com/annavetech/kumi",
+      "license": "MIT",
+      "keywords": [
+        "agents",
+        "orchestration",
+        "engineering-team",
+        "memory",
+        "subagents",
+        "go",
+        "angular",
+        "ios",
+        "python",
+        "react",
+        "sql",
+        "nosql",
+        "code-review"
+      ],
+      "category": "orchestration",
+      "source": {
+        "source": "github",
+        "repo": "annavetech/kumi",
+        "sha": "c811ba8daa87493df3b60e16bbe10a6b273149d1"
+      }
+    },
+  {
+    "name": "clawd-actor",
+    "description": "While Claude works, Clawd (Claude Code's mascot) acts out the spinner's -ing word and the running tool on a little stage above the prompt: 26 animated scenes, wandering the band, changing scene every 30 seconds on long turns.",
+    "version": "0.3.0",
+    "author": {
+      "name": "Brian Huang",
+      "url": "https://github.com/BrianHuang813"
+    },
+    "homepage": "https://github.com/BrianHuang813/clawd-actor",
+    "repository": "https://github.com/BrianHuang813/clawd-actor",
+    "license": "MIT",
+    "keywords": [
+      "animation",
+      "ui",
+      "spinner",
+      "clawd",
+      "mascot",
+      "fun",
+      "function-hooks",
+      "mod"
+    ],
+    "category": "creative",
+    "source": {
+      "source": "github",
+      "repo": "BrianHuang813/clawd-actor"
+    }
+  },
+  {
+    "name": "figma-maxxing",
+    "description": "Agent skills for real Figma files: Plugin API gotchas, checks before and after every write, comments to verified fixes, handoff gate.",
+    "version": "1.1.0",
+    "author": {
+      "name": "Thiago Xikota",
+      "url": "https://github.com/thiagoxikota"
+    },
+    "homepage": "https://github.com/thiagoxikota/figma-maxxing",
+    "repository": "https://github.com/thiagoxikota/figma-maxxing",
+    "license": "MIT",
+    "keywords": [
+      "figma",
+      "figma-plugin-api",
+      "design-systems",
+      "design-tokens",
+      "handoff",
+      "design-qa",
+      "agent-skills",
+      "skills"
+    ],
+    "category": "development",
+    "source": {
+      "source": "github",
+      "repo": "thiagoxikota/figma-maxxing",
+      "ref": "v1.1.0",
+      "sha": "49a2df96786d976f4c2cd2fea610574f141afbae"
+    }
+  },
+  {
+    "name": "bestax",
+    "description": "Build with Bestax, React components for Bulma v1. Seven Agent Skills for forms, layouts, theming, icons, custom components, CSS size and migration from Bulma classes or older React Bulma libraries, plus the bestax-mcp server, which answers questions about components, props, examples and CSS variables from a bundled index. Local stdio server, exact npm pin, no telemetry.",
+    "version": "1.0.294",
+    "author": {
+      "name": "Alex Smith",
+      "url": "https://github.com/allxsmith"
+    },
+    "homepage": "https://bestax.io/docs/guides/llms",
+    "repository": "https://github.com/allxsmith/bestax-skills",
+    "license": "MIT",
+    "keywords": [
+      "bestax",
+      "bestax-bulma",
+      "bulma",
+      "react",
+      "agent-skills",
+      "mcp"
+    ],
+    "category": "development",
+    "source": {
+      "source": "github",
+      "repo": "allxsmith/bestax-skills"
+    }
+  },
+    {
+      "name": "equibles",
+      "description": "US stock market research through the hosted Equibles MCP server: SEC filings with full-text search, XBRL financial statements, earnings call transcripts, insider and congressional trades, 13F institutional holdings, short interest, end-of-day prices, option chains and macroeconomic data. Sign in over OAuth from /mcp; free tier of 100 requests a day, no credit card.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Equibles",
+        "url": "https://equibles.com"
+      },
+      "homepage": "https://equibles.com/mcp",
+      "repository": "https://github.com/daniel3303/stock-market-mcp-server",
+      "license": "MIT",
+      "keywords": [
+        "finance",
+        "stocks",
+        "sec-filings",
+        "earnings-calls",
+        "13f",
+        "insider-trading",
+        "market-data",
+        "mcp",
+        "oauth"
+      ],
+      "category": "finance",
+      "source": "./plugins/equibles"
+    },
+  {
+    "name": "claude-usage",
+    "description": "Lets Claude check its own claude.ai plan quota: percent used of the session and weekly limits (including per-model weekly limits), when each resets, and where usage is on pace to be at reset. One skill and a short Python script that reads Claude Code's stored login token and calls the same usage endpoint as /usage. Claude Code only; no hooks, MCP servers, or telemetry.",
+    "version": "0.1.0",
+    "author": {
+      "name": "Christian Oudard",
+      "url": "https://github.com/christian-oudard"
+    },
+    "homepage": "https://github.com/christian-oudard/claude-usage",
+    "repository": "https://github.com/christian-oudard/claude-usage",
+    "license": "MIT",
+    "keywords": [
+      "usage",
+      "quota",
+      "rate-limits",
+      "pacing",
+      "claude-code",
+      "agent-skills"
+    ],
+    "category": "monitoring",
+    "source": {
+      "source": "github",
+      "repo": "christian-oudard/claude-usage"
+    }
+  },
+  {
+    "name": "herdr-toolkit",
+    "description": "One skill for running Claude Code on Herdr, the terminal agent multiplexer. spawn-session starts a named, detached Claude Code Remote Control session for any project directory in its own Herdr pane, so it appears in the Claude mobile app, and confirms on the pane screen that each prompt landed.",
+    "version": "2.0.0",
+    "author": {
+      "name": "shimo4228",
+      "url": "https://github.com/shimo4228"
+    },
+    "homepage": "https://github.com/shimo4228/herdr-toolkit",
+    "repository": "https://github.com/shimo4228/herdr-toolkit",
+    "license": "MIT",
+    "keywords": [
+      "herdr",
+      "agent-multiplexer",
+      "remote-control",
+      "claude-code"
+    ],
+    "category": "orchestration",
+    "source": {
+      "source": "github",
+      "repo": "shimo4228/herdr-toolkit"
+    }
+  },
+  {
+    "name": "ask-human-expert",
+    "description": "Ask real executives, operators and domain experts a question through Instant Expert and get a written or voice answer or a short call. It finds people by description or reaches a named person, and the user approves every live order. Starts in a free test mode with no account; you pay only if someone answers.",
+    "version": "1.0.0",
+    "author": {
+      "name": "Instant Expert",
+      "url": "https://github.com/Instant-Expert"
+    },
+    "homepage": "https://github.com/Instant-Expert/skills",
+    "repository": "https://github.com/Instant-Expert/skills",
+    "license": "MIT-0",
+    "keywords": [
+      "experts",
+      "expert-network",
+      "human-in-the-loop",
+      "customer-discovery",
+      "user-research",
+      "expert-calls",
+      "mcp",
+      "agent-skills"
+    ],
+    "category": "research",
+    "source": {
+      "source": "github",
+      "repo": "Instant-Expert/skills"
+    }
+  },
+  {
+    "name": "auten",
+    "description": "Computer use for Claude Code: click, type and read the screen on your Mac, Windows or Linux computer and your Android phone over USB (beta), even in apps with no API. Reads the accessibility tree, types saved passwords locally, and asks before anything irreversible. Free plan 30 minutes of runtime a month.",
+    "version": "0.1.6",
+    "author": {
+      "name": "Auten",
+      "url": "https://auten.ai"
+    },
+    "homepage": "https://auten.ai/mcp",
+    "repository": "https://github.com/auten-ai/auten-mcp",
+    "license": "MIT",
+    "keywords": [
+      "computer-use",
+      "desktop-automation",
+      "android",
+      "accessibility",
+      "rpa",
+      "mcp"
+    ],
+    "category": "productivity",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/auten-ai/auten-mcp.git",
+      "path": "plugin",
+      "sha": "6502c592c3a9c1a091af9b3312caf93bc6446740"
+    }
+  },
+  {
+    "name": "memory-loop",
+    "description": "A lifecycle for Claude Code native file-based memory: a save gate that gives each memory a tier and an expiry, a sweep that archives expired memories instead of deleting them, a consolidation pass that merges duplicates and resolves contradictions only after you confirm, and a correction-signal hook that feeds an always-loaded HABITS.md capped at 8000 bytes / 24 rules, enforced at write time. Local-only.",
+    "version": "2.3.1",
+    "author": {
+      "name": "choiyounggi",
+      "url": "https://github.com/choiyounggi"
+    },
+    "homepage": "https://github.com/choiyounggi/groundwork/tree/main/plugins/memory-loop",
+    "repository": "https://github.com/choiyounggi/groundwork",
+    "license": "MIT",
+    "keywords": [
+      "memory",
+      "lifecycle",
+      "habits",
+      "consolidation",
+      "expiry",
+      "corrections",
+      "claude-md"
+    ],
+    "category": "productivity",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/choiyounggi/groundwork.git",
+      "path": "plugins/memory-loop",
+      "ref": "main"
+    }
+  },
+  {
+    "name": "lnpl",
+    "description": "Authoring and verification for LNPL, the language of the linkly LLM-native platform (declare entities, services and workflows; the compiler lowers them to a semantic IR that runs on an interpreter or compiles through MLIR to a native binary). LNPL's verb vocabulary is closed and absent from model training data, so a plausible word compiles into a step that silently does nothing. The plugin routes Claude to the lexicon generated from the compiler's own tables, surfaces lnpl compile diagnostics on every save, offers an independent reviewer subagent, derives spec cases, and gates completion on evidence.",
+    "version": "0.8.0",
+    "author": {
+      "name": "choiyounggi",
+      "url": "https://github.com/choiyounggi"
+    },
+    "homepage": "https://github.com/choiyounggi/linkly",
+    "repository": "https://github.com/choiyounggi/linkly",
+    "license": "MIT",
+    "keywords": [
+      "lnpl",
+      "linkly",
+      "llm-native",
+      "programming-language",
+      "compiler",
+      "diagnostics",
+      "mlir",
+      "semantic-ir"
+    ],
+    "category": "development",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/choiyounggi/linkly.git",
+      "path": "plugins/lnpl",
+      "ref": "main"
+    }
+  },
+  {
+    "name": "ngx-json-render",
+    "description": "Two skills for generative UI in Angular with ngx-json-render, the Angular renderer for Vercel's json-render: define a component catalog and registry, render model-written JSON specs with <json-render>, stream them with signals, check specs and test components, and use the ready Angular Material catalog.",
+    "version": "0.9.1",
+    "author": {
+      "name": "shteynu",
+      "url": "https://github.com/shteynu"
+    },
+    "homepage": "https://github.com/shteynu/ngx-json-render/tree/main/plugins/ngx-json-render",
+    "repository": "https://github.com/shteynu/ngx-json-render",
+    "license": "Apache-2.0",
+    "keywords": [
+      "angular",
+      "json-render",
+      "generative-ui",
+      "signals",
+      "angular-material",
+      "llm-ui"
+    ],
+    "category": "development",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/shteynu/ngx-json-render.git",
+      "path": "plugins/ngx-json-render",
+      "ref": "main"
+    }
+  },
+  {
+    "name": "render-policy",
+    "description": "Two skills for rendering agent output safely: replace innerHTML with render-policy's sanitize-into-a-fragment renderers for plain DOM, React and Angular, with image, link and host policies, streaming and ESLint rules; and lint the CSP and tool metadata an MCP App declares before you publish it.",
+    "version": "0.1.6",
+    "author": {
+      "name": "shteynu",
+      "url": "https://github.com/shteynu"
+    },
+    "homepage": "https://github.com/shteynu/render-policy/tree/main/plugins/render-policy",
+    "repository": "https://github.com/shteynu/render-policy",
+    "license": "MIT",
+    "keywords": [
+      "security",
+      "xss",
+      "markdown",
+      "llm-output",
+      "mcp-apps",
+      "csp"
+    ],
+    "category": "security",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/shteynu/render-policy.git",
+      "path": "plugins/render-policy",
+      "ref": "main"
+    }
+  },
+  {
+    "name": "skyvern",
+    "description": "Browser automation in Claude Code through Skyvern Cloud: open pages, fill forms, extract structured data, take screenshots, and run repeatable workflows. Sign in with OAuth from /mcp. Runs can use Skyvern credits.",
+    "version": "1.0.0",
+    "author": {
+      "name": "Skyvern",
+      "url": "https://www.skyvern.com"
+    },
+    "homepage": "https://www.skyvern.com",
+    "repository": "https://github.com/Skyvern-AI/skyvern",
+    "license": "Apache-2.0",
+    "keywords": [
+      "browser-automation",
+      "web-automation",
+      "web-scraping",
+      "data-extraction",
+      "form-filling",
+      "cloud-browser",
+      "workflows",
+      "mcp",
+      "oauth"
+    ],
+    "category": "automation",
+    "source": "./plugins/skyvern"
+  },
+  {
+    "name": "baizhi-agent-toolkit",
+    "version": "0.1.0",
+    "description": "Connect Baizhi Agent Toolkit through an authenticated remote MCP server, with an optional skill for bounded research and source verification. Requires a Baizhi account and API key; service usage may incur charges.",
+    "author": {
+      "name": "ct-jaryn",
+      "url": "https://github.com/ct-jaryn"
+    },
+    "homepage": "https://agent-toolkit.app.baizhi.cloud",
+    "repository": "https://github.com/davepoon/buildwithclaude",
+    "license": "MIT",
+    "keywords": [
+      "mcp",
+      "baizhi",
+      "research",
+      "search"
+    ],
+    "category": "mcp-servers",
+    "source": "./plugins/baizhi-agent-toolkit"
+  },
+  {
+    "name": "cc-aws-keepalive",
+    "description": "Keeps Claude Code sessions on AWS Bedrock alive through credential expiry. Scripts for awsCredentialExport and awsAuthRefresh, added to settings.json by hand, read fresh credentials from ~/.aws/credentials and can re-run your login. A UserPromptSubmit hook warns when expiry is near or past. Works with saml2aws, gimme-aws-creds, aws-google-auth and any tool that writes to ~/.aws/credentials.",
+    "version": "0.5.1",
+    "author": {
+      "name": "GeiserX",
+      "url": "https://github.com/GeiserX"
+    },
+    "homepage": "https://github.com/GeiserX/cc-aws-keepalive",
+    "repository": "https://github.com/GeiserX/cc-aws-keepalive",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+      "aws",
+      "bedrock",
+      "credentials",
+      "sso",
+      "saml",
+      "keepalive"
+    ],
+    "category": "productivity",
+    "source": {
+      "source": "github",
+      "repo": "GeiserX/cc-aws-keepalive"
+    }
+  },
+  {
+    "name": "ultramod",
+    "description": "All-in-one mod pack for Claude Code: a usage limits and context HUD, a guard with undo for rm -rf and git reset --hard, .env and secret protection, and a receipt for every turn. Ten mods in one plugin; needs Claude Code 2.1.287 or later.",
+    "version": "1.0.11",
+    "author": {
+      "name": "Mert Kaya",
+      "url": "https://github.com/mertkayacs"
+    },
+    "homepage": "https://ultramod.mertkayacs.com",
+    "repository": "https://github.com/mertkayacs/ultramod",
+    "license": "MIT",
+    "keywords": [
+      "claude-code",
+      "mods",
+      "hooks",
+      "context",
+      "usage-limits",
+      "guardrails",
+      "secrets"
+    ],
+    "category": "monitoring",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/mertkayacs/ultramod.git",
+      "path": "plugin",
+      "ref": "v1.0.11"
+    }
+  },
+  {
+    "name": "reevesagents",
+    "description": "Lets Claude Code start other AI coding CLIs (Claude Code, Codex, Kimi, Qwen, OpenCode) in their own tmux windows, send them prompts, read their output and stop them, through the reevesagents MCP server. Ships one skill and the MCP config; needs the reevesagents npm package and tmux.",
+    "version": "1.0.1",
+    "author": {
+      "name": "Mert Kaya",
+      "url": "https://github.com/mertkayacs"
+    },
+    "homepage": "https://reevesagents.mertkayacs.com",
+    "repository": "https://github.com/mertkayacs/reevesagents-skill",
+    "license": "Apache-2.0",
+    "keywords": [
+      "agents",
+      "multi-agent",
+      "orchestration",
+      "mcp",
+      "tmux",
+      "codex",
+      "kimi",
+      "opencode"
+    ],
+    "category": "orchestration",
+    "source": {
+      "source": "github",
+      "repo": "mertkayacs/reevesagents-skill",
+      "ref": "v1.0.1"
+    }
+  },
+  {
+    "name": "convika",
+    "description": "Publish a page Claude wrote, or an HTML file in your repo, at a convika.com address or on your own domain. Convika keeps signups from the page's form and counts visits, traffic sources, and button clicks. Sign-in is OAuth in the browser, so Claude never holds an API key. The publish-page skill shows a private preview and asks before it publishes.",
+    "version": "1.0.2",
+    "author": {
+      "name": "Convika",
+      "url": "https://convika.com"
+    },
+    "homepage": "https://convika.com",
+    "repository": "https://github.com/tomoyaf/convika-mcp",
+    "license": "MIT",
+    "keywords": [
+      "mcp",
+      "landing-page",
+      "hosting",
+      "forms",
+      "analytics",
+      "oauth"
+    ],
+    "category": "sales-marketing",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/tomoyaf/convika-mcp.git",
+      "path": "plugins/convika",
+      "ref": "convika--v1.0.2"
+    }
+  },
+  {
+    "name": "korean-law",
+    "description": "Search and read Korean law through the official Ministry of Government Legislation (\ubc95\uc81c\ucc98) Open API: statutes, precedents, administrative rules, local ordinances, treaties and legal interpretations. Also checks legal citations in Claude's answers against the source for existence and content. Runs the korean-law-mcp MCP server via npx and needs a free \ubc95\uc81c\ucc98 API key (LAW_OC), entered at install.",
+    "version": "4.15.6",
+    "author": {
+      "name": "Chris",
+      "url": "https://github.com/chrisryugj"
+    },
+    "homepage": "https://github.com/chrisryugj/korean-law-mcp",
+    "repository": "https://github.com/chrisryugj/korean-law-mcp",
+    "license": "MIT",
+    "keywords": [
+      "korean-law",
+      "legal-ai",
+      "legal-research",
+      "citation-verification",
+      "korea",
+      "mcp"
+    ],
+    "category": "research",
+    "source": {
+      "source": "github",
+      "repo": "chrisryugj/korean-law-mcp"
+    }
+  },
+  {
+    "name": "kordoc",
+    "description": "Read, create, fill, patch and compare Korean documents in Claude. One skill that runs the kordoc CLI via npx to convert HWP 3.x/5.x, HWPX, HWPML, PDF, DOCX and XLS/XLSX files to Markdown, fill form templates while keeping their formatting, and generate HWPX documents from Markdown with Korean government document presets. No Hancom Office needed.",
+    "version": "4.21.14",
+    "author": {
+      "name": "chrisryugj",
+      "url": "https://github.com/chrisryugj"
+    },
+    "homepage": "https://github.com/chrisryugj/kordoc",
+    "repository": "https://github.com/chrisryugj/kordoc.git",
+    "license": "MIT",
+    "keywords": [
+      "hwp",
+      "hwpx",
+      "korean",
+      "document-parsing",
+      "markdown",
+      "form-filling",
+      "agent-skills"
+    ],
+    "category": "productivity",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/chrisryugj/kordoc.git",
+      "path": "plugins/kordoc",
+      "ref": "main"
+    }
+  },
+  {
+    "name": "harness-scope",
+    "description": "A Claude Code mod that turns global skills, agents, instruction files (CLAUDE.md and rules) and tools on or off per repo through named profiles. A repo picks a profile with a one-line .claude/harness-scope.json; repos without the file are unchanged. It only reads: no file writes, network requests, child processes or model calls.",
+    "version": "0.1.5",
+    "author": {
+      "name": "shimo4228",
+      "url": "https://github.com/shimo4228"
+    },
+    "homepage": "https://github.com/shimo4228/harness-scope",
+    "repository": "https://github.com/shimo4228/harness-scope",
+    "license": "MIT",
+    "keywords": [
+      "mod",
+      "profiles",
+      "skills",
+      "agents",
+      "claude-code"
+    ],
+    "category": "productivity",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/shimo4228/harness-scope.git",
+      "path": "plugin",
+      "sha": "efae82bc43c273e096130a7e0e549abf7aa1ed1a"
+    }
+  },
+  {
+    "name": "guardrails",
+    "description": "PreToolUse Bash guard for Claude Code that still holds under --dangerously-skip-permissions. Blocks pipe-to-shell installs, disk wipes and fork bombs; asks before rm -rf, force-push, git reset --hard, DROP/TRUNCATE, kubectl delete, cloud deletes and secret-file reads. 15 rules, each off/ask/block; a project's own config can only tighten them, loosening comes only from your config outside the project. Plus a PostToolUse audit log with secrets redacted and /guardrails:self-test to see every decision without running anything.",
+    "version": "1.2.4",
+    "author": {
+      "name": "choiyounggi",
+      "url": "https://github.com/choiyounggi"
+    },
+    "homepage": "https://github.com/choiyounggi/groundwork/tree/main/plugins/guardrails",
+    "repository": "https://github.com/choiyounggi/groundwork",
+    "license": "MIT",
+    "keywords": [
+      "security",
+      "safety",
+      "guardrails",
+      "hooks",
+      "pretooluse",
+      "destructive-commands",
+      "audit-log",
+      "yolo-mode"
+    ],
+    "category": "security",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/choiyounggi/groundwork.git",
+      "path": "plugins/guardrails",
+      "ref": "main"
+    }
+  },
+  {
+    "name": "dev-loop",
+    "description": "Multi-agent orchestration grounded in an LLM wiki. /dev-loop:orchestrate splits one goal into a dependency graph of parallel Claude Code sessions, each in its own worktree, and supervises them natively on Orca (a tracked Task + Dispatch per phase, pushed worker_done / question / escalation events instead of polling, stall detection; raw tmux fallback). Every plan decision must cite a page in a bundled best-practice wiki of 400+ pages across 10 domains, checked by machine gates and a fresh-context plan reviewer. Insights from your sessions are queued and turned into reviewed wiki PRs when you run /dev-loop:knowledge-flush (automatic flushing is opt-in and never bypasses permission checks).",
+    "version": "1.32.30",
+    "author": {
+      "name": "choiyounggi",
+      "url": "https://github.com/choiyounggi"
+    },
+    "homepage": "https://github.com/choiyounggi/dev-loop",
+    "repository": "https://github.com/choiyounggi/dev-loop",
+    "license": "MIT",
+    "keywords": [
+      "orchestration",
+      "multi-agent",
+      "parallel-agents",
+      "orca",
+      "tmux",
+      "worktree",
+      "llm-wiki",
+      "planning",
+      "tdd",
+      "knowledge-base"
+    ],
+    "category": "orchestration",
+    "source": {
+      "source": "github",
+      "repo": "choiyounggi/dev-loop"
+    }
+  },
+  {
+    "name": "lnpl-mcp",
+    "description": "The LNPL compiler (linkly LLM-native platform) as MCP tools instead of a shell command. lnpl compile writes diagnostics to stderr and exits 0, so a caller that checks the exit code misses every warning, and an unknown-verb warning means a step that does nothing at runtime. lnpl_compile, lnpl_spec and lnpl_kb_route return diagnostics, spec results and knowledge-base routes as structured records, calling the compiler in-process with no PATH lookup. The compiler is loaded only from a path you configure (LNPL_IMPL_PATH) or an installed package, never from the project directory.",
+    "version": "0.8.0",
+    "author": {
+      "name": "choiyounggi",
+      "url": "https://github.com/choiyounggi"
+    },
+    "homepage": "https://github.com/choiyounggi/linkly/tree/main/plugins/lnpl-mcp",
+    "repository": "https://github.com/choiyounggi/linkly",
+    "license": "MIT",
+    "keywords": [
+      "lnpl",
+      "linkly",
+      "mcp",
+      "compiler",
+      "diagnostics",
+      "llm-native",
+      "semantic-ir"
+    ],
+    "category": "mcp-servers",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/choiyounggi/linkly.git",
+      "path": "plugins/lnpl-mcp",
+      "ref": "main"
+    }
+  },
+  {
+    "name": "kernel-development-skills",
+    "description": "Kernel Field Guide: Linux kernel development the way experienced kernel engineers work: driver code and teardown order, devicetree bindings and DTS, Kconfig, debugging by symptom, KUnit and kselftest, patch review and submission, regressions and bot reports, and stable, LTS, and vendor kernel trees.",
+    "version": "0.4.3",
+    "author": {
+      "name": "utsavbalar1231",
+      "url": "https://github.com/UtsavBalar1231"
+    },
+    "homepage": "https://github.com/UtsavBalar1231/kernel-development-skills",
+    "repository": "https://github.com/UtsavBalar1231/kernel-development-skills",
+    "license": "MIT",
+    "keywords": [
+      "linux-kernel",
+      "kernel-drivers",
+      "devicetree",
+      "kconfig",
+      "debugging",
+      "kunit",
+      "kselftest",
+      "patch-submission",
+      "stable",
+      "lts"
+    ],
+    "category": "development",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/UtsavBalar1231/kernel-development-skills.git",
+      "path": "plugins/kernel-development-skills",
+      "ref": "v0.4.3",
+      "sha": "62eedd7b6ea6acc862d66a7afc08c253a4a5da1c"
+    }
+  },
+  {
+    "name": "looot",
+    "description": "Search, price and run 2,500+ data API endpoints (work emails, company and people search, Google results, web pages) with one prepaid balance. The agent sees the price before a call runs, and a failed call costs nothing. Remote MCP server with browser sign-in plus one skill.",
+    "version": "0.2.1",
+    "author": {
+      "name": "looot",
+      "url": "https://looot.ai"
+    },
+    "homepage": "https://looot.ai",
+    "repository": "https://github.com/loootai/looot-plugin",
+    "license": "MIT",
+    "keywords": [
+      "mcp",
+      "data-apis",
+      "enrichment",
+      "email-finder",
+      "serp",
+      "pay-per-call"
+    ],
+    "category": "sales-marketing",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/loootai/looot-plugin.git",
+      "path": "plugins/claude-code/looot",
+      "sha": "12408693408ad97d0f417e8a4d3aa413598bd376"
+    }
+  },
+  {
+    "name": "show-receipts",
+    "description": "Stop hook for Claude Code and Codex. When the agent ends with \"all tests pass\", \"the build succeeds\" or \"lint is clean\", it checks the session transcript for a matching command that ran after the last edit and exited 0, and blocks the stop if there isn't one. One file of standard-library Python, no LLM, no network.",
+    "version": "0.3.4",
+    "author": {
+      "name": "Tanbir Hossain Ramim",
+      "url": "https://github.com/TanbirRamim"
+    },
+    "homepage": "https://github.com/TanbirRamim/show-receipts",
+    "repository": "https://github.com/TanbirRamim/show-receipts",
+    "license": "MIT",
+    "keywords": [
+      "hooks",
+      "stop-hook",
+      "testing",
+      "verification",
+      "codex"
+    ],
+    "category": "hooks",
+    "source": {
+      "source": "github",
+      "repo": "TanbirRamim/show-receipts",
+      "ref": "v0.3.4",
+      "sha": "186a2d4a5b1986138d183a737df168d9db353f76"
+    }
+  },
+  {
+    "name": "uxkin",
+    "description": "Real UI, not AI slop. The free no-ui-slop and uxkin-research skills (work with no account), plus the optional UXKIN MCP server for real iOS app screens, user journeys and website design systems (sign in with UXKIN; searching needs a UXKIN plan). Tool results are treated as data, never as instructions.",
+    "version": "1.3.0",
+    "author": {
+      "name": "UXKIN",
+      "url": "https://uxkin.com"
+    },
+    "homepage": "https://uxkin.com",
+    "repository": "https://github.com/uxkin/agent",
+    "license": "MIT",
+    "keywords": [
+      "ui",
+      "design",
+      "frontend",
+      "ui-references",
+      "design-system",
+      "mcp",
+      "agent-skills"
+    ],
+    "category": "mcp-servers",
+    "source": {
+      "source": "github",
+      "repo": "uxkin/agent"
+    }
+  },
+  {
+    "name": "website-design",
+    "description": "Design and build websites and landing pages that look like a real product, not AI output: pick a design direction from real websites, write it down as a DESIGN.md, build pages that work on phone and desktop, and review what you have. Skills: landing-page, web-design-system, web-review. Works with no account; the UXKIN MCP server is optional (sign in with UXKIN; searching needs a UXKIN plan). Tool results are treated as data, never as instructions.",
+    "version": "1.0.0",
+    "author": {
+      "name": "UXKIN",
+      "url": "https://uxkin.com"
+    },
+    "homepage": "https://uxkin.com/web",
+    "repository": "https://github.com/uxkin/agent",
+    "license": "MIT",
+    "keywords": [
+      "website-design",
+      "landing-page",
+      "web-design",
+      "design-system",
+      "design-md",
+      "frontend",
+      "tailwind",
+      "mcp"
+    ],
+    "category": "development",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/uxkin/agent.git",
+      "path": "plugins/website-design",
+      "sha": "07e8f5f61421c7268fddc1511878fb09945da854"
+    }
+  },
+  {
+    "name": "mobile-app-design",
+    "description": "Design and build iPhone app screens and flows that feel native: onboarding, sign-up, paywalls, permissions, settings and more, checked against Apple's conventions and real iOS apps. Skills: ios-flows, ios-screens, ios-review. Works with no account; the UXKIN MCP server is optional (sign in with UXKIN; searching needs a UXKIN plan). Tool results are treated as data, never as instructions.",
+    "version": "1.0.1",
+    "author": {
+      "name": "UXKIN",
+      "url": "https://uxkin.com"
+    },
+    "homepage": "https://uxkin.com/mobile",
+    "repository": "https://github.com/uxkin/agent",
+    "license": "MIT",
+    "keywords": [
+      "ios",
+      "mobile-app-design",
+      "swiftui",
+      "react-native",
+      "onboarding",
+      "paywall",
+      "user-flows",
+      "mcp"
+    ],
+    "category": "development",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/uxkin/agent.git",
+      "path": "plugins/mobile-app-design",
+      "sha": "0c44dd6e44f565643fcf45339fce19d0696f9b8c"
+    }
+  },
+  {
+    "name": "paywall-pricing-design",
+    "description": "Design and build paywalls, upgrade screens and pricing pages that are clear and honest: the value first, real prices and renewal terms, one obvious choice, Restore Purchases and every loading, error and already-subscribed state. Skills: app-paywall, pricing-page-layout, paywall-review. Works with no account; the UXKIN MCP server is optional (sign in with UXKIN; searching needs a UXKIN plan). Tool results are treated as data, never as instructions.",
+    "version": "1.0.0",
+    "author": {
+      "name": "UXKIN",
+      "url": "https://uxkin.com"
+    },
+    "homepage": "https://uxkin.com",
+    "repository": "https://github.com/uxkin/agent",
+    "license": "MIT",
+    "keywords": [
+      "paywall",
+      "pricing-page",
+      "subscriptions",
+      "in-app-purchase",
+      "saas",
+      "conversion",
+      "frontend",
+      "mcp"
+    ],
+    "category": "development",
+    "source": {
+      "source": "git-subdir",
+      "url": "https://github.com/uxkin/agent.git",
+      "path": "plugins/paywall-pricing-design",
+      "sha": "ddf2946b6fdf27b956b8485ab95c3feb7a7e86fc"
+    }
+  },
+  {
+    "name": "sectionsight",
+    "description": "Sets up cookieless, privacy-first website analytics in your own site: time per page section, scroll, goals and 404s from a small tracker and a same-origin collector, an optional consent banner, PostHog session replay only after consent, one Slack or e-mail line per notable visit, a weekly digest, and health alerts. A Playwright check then proves the privacy claims: nothing stored before consent, no e-mail or token from the URL in any report, private pages silent.",
+    "version": "0.4.0",
+    "author": {
+      "name": "Jakub Dvo\u0159\u00e1k",
+      "url": "https://kubadvorak.com"
+    },
+    "homepage": "https://github.com/Majny/sectionsight",
+    "repository": "https://github.com/Majny/sectionsight",
+    "license": "MIT",
+    "keywords": [
+      "analytics",
+      "web-analytics",
+      "privacy",
+      "cookieless",
+      "consent",
+      "posthog",
+      "slack",
+      "playwright"
+    ],
+    "category": "monitoring",
+    "source": {
+      "source": "github",
+      "repo": "Majny/sectionsight",
+      "sha": "815e5e91aa3c8a198854853fe694355d25535125"
+    }
+  },
+  {
+    "name": "subagent-tuner",
+    "description": "Claude Code mod that lets you choose the model and reasoning effort of every subagent: ask before it starts, take a recommendation by task kind, or let a saved default replace what the agent requested.",
+    "version": "0.1.7",
+    "author": {
+      "name": "Aleh Kruhlikau",
+      "url": "https://github.com/Kruhlikau"
+    },
+    "homepage": "https://github.com/Kruhlikau/subagent-tuner",
+    "repository": "https://github.com/Kruhlikau/subagent-tuner",
+    "license": "MIT",
+    "keywords": [
+      "subagents",
+      "model-selection",
+      "reasoning-effort",
+      "cost-control",
+      "mod"
+    ],
+    "category": "orchestration",
+    "source": {
+      "source": "github",
+      "repo": "Kruhlikau/subagent-tuner"
+    }
+  },
+  {
+    "name": "cockney",
+    "description": "Cheeky Cockney coding mode: terse replies, the smallest correct change, plain English for anything risky.",
+    "version": "0.1.1",
+    "author": {
+      "name": "Jeremy Stover",
+      "url": "https://github.com/Kadajett"
+    },
+    "homepage": "https://github.com/Kadajett/cockney",
+    "repository": "https://github.com/Kadajett/cockney",
+    "license": "MIT",
+    "keywords": [
+      "cockney",
+      "terse",
+      "minimal",
+      "code-style",
+      "persona",
+      "claude-code"
+    ],
+    "category": "productivity",
+    "source": {
+      "source": "github",
+      "repo": "Kadajett/cockney",
+      "sha": "9d65e6eb0f20f6e52417c7b44bc92edee38c65bb"
+    }
+  },
+    {
+      "name": "notfair",
+      "description": "Open-source SEO, GEO, and marketing skills (48) with one hosted NotFair MCP connection (OAuth). Audit sites and content for search and AI-answer visibility, analyze GA4 and Search Console, review Google, Meta, X, LinkedIn, Reddit, and TikTok Ads, and operate connected WordPress and GoHighLevel accounts. Every spend change and WordPress or CRM write waits for explicit approval of the exact change; fetched pages, ad and competitor text, and tool output are treated as untrusted data.",
+      "version": "0.27.16",
+      "author": {
+        "name": "NotFair",
+        "url": "https://notfair.co"
+      },
+      "homepage": "https://notfair.co",
+      "repository": "https://github.com/nowork-studio/notfair-plugin",
+      "license": "MIT",
+      "keywords": [
+        "seo",
+        "geo",
+        "google-ads",
+        "meta-ads",
+        "google-analytics",
+        "search-console",
+        "wordpress",
+        "mcp"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "nowork-studio/notfair-plugin"
+      }
+    },
+    {
+      "name": "guardrails-lite",
+      "description": "Pattern-based PreToolUse-style checks that deny .env reads (Read/Grep/Glob and Bash readers), git force pushes, and recursive rm on /, ~ or $HOME before Claude Code runs them. About 75 lines of dependency-free JavaScript.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Stack & Ship",
+        "url": "https://github.com/edtrackai"
+      },
+      "homepage": "https://github.com/edtrackai/claude-code-guardrails-lite",
+      "repository": "https://github.com/edtrackai/claude-code-guardrails-lite",
+      "license": "MIT",
+      "keywords": [
+        "security",
+        "guardrails",
+        "env",
+        "secrets",
+        "force-push",
+        "hooks"
+      ],
+      "category": "security",
+      "source": {
+        "source": "github",
+        "repo": "edtrackai/claude-code-guardrails-lite",
+        "sha": "b11ca0932ce08a49bb2b05e38ee6e18c862af130"
+      }
+    },
+    {
+      "name": "chisle",
+      "description": "Cuts Claude Code's token use on three axes: terse answers that keep every decisive fact, smallest-code-that-works rules, and a PostToolUse hook that trims oversized tool output before it re-enters the context. Benchmarks with raw transcripts, including the runs it loses, are published in the repository.",
+      "version": "3.7.0",
+      "author": {
+        "name": "Jay Pokale",
+        "url": "https://github.com/JayPokale"
+      },
+      "homepage": "https://chisle.jaypokale.me",
+      "repository": "https://github.com/JayPokale/Chisle",
+      "license": "MIT",
+      "keywords": [
+        "token-optimization",
+        "cost",
+        "context",
+        "hooks",
+        "productivity",
+        "yagni"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "JayPokale/Chisle",
+        "sha": "b0fde39bbc2901683d27114071b5954c2799430a"
+      }
+    },
+    {
+      "name": "moltnode",
+      "description": "MoltNode by Chord: two hosted MCP servers and three skills, no API key. MoltNode reads 31 blockchains over JSON-RPC; Chord returns best-route DEX swap quotes and unsigned swap transactions (with the approval and a simulation) on Ethereum, Base, Arbitrum, BNB Chain, Avalanche, Monad, Robinhood Chain and Arc, plus token boards, candles, wallet PnL and smart money. Non-custodial: the user's own wallet signs every transaction, after the user confirms the quote in a later message. Skills: moltnode (reads and swaps end to end), chord (trading and market data), chord-charts (candlestick SVG charts for tokens on 8 EVM chains and Solana).",
+      "version": "1.1.4",
+      "author": {
+        "name": "Chord",
+        "url": "https://getchord.xyz"
+      },
+      "homepage": "https://moltnode.ag/agents",
+      "repository": "https://github.com/tuantqse90/moltnode-mcp",
+      "license": "MIT",
+      "keywords": [
+        "mcp",
+        "blockchain",
+        "json-rpc",
+        "swap",
+        "dex",
+        "defi",
+        "crypto",
+        "chart"
+      ],
+      "category": "finance",
+      "source": {
+        "source": "github",
+        "repo": "tuantqse90/moltnode-mcp",
+        "sha": "ff8de7c5182ce308f823a4a4db2a3804c2532c8a"
+      }
+    },
+    {
+      "name": "lead-finder",
+      "description": "Finds B2B companies that fit your ideal customer and show a buying signal now, with a source link and an exact quote for every claim. Anything it can't check stays \"unknown\" instead of being guessed. A deterministic, standard-library Python script does the scoring, and hiring is checked on 7 public job-board APIs (Greenhouse, Lever, Ashby, SmartRecruiters, Recruitee, Breezy HR, Personio). No API keys.",
+      "version": "1.0.1",
+      "author": {
+        "name": "MachGTM",
+        "url": "https://machgtm.com"
+      },
+      "homepage": "https://github.com/MachGTM/lead-finder",
+      "repository": "https://github.com/MachGTM/lead-finder",
+      "license": "MIT",
+      "keywords": [
+        "sales",
+        "leads",
+        "prospecting",
+        "b2b",
+        "lead-scoring",
+        "gtm"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "MachGTM/lead-finder",
+        "sha": "a790b62e1333369150e98185b611232b8139c878"
+      }
+    },
+    {
+      "name": "akc-cycle",
+      "description": "Audit and upkeep skills that keep the rules and skills in a Claude Code setup from piling up and going stale. Ask \"audit my skills\" and skill-stocktake proposes keep, merge or retire for each skill with a reason; the audit skills change a file only after you confirm it. Skills only: no hooks, no MCP servers, no settings. Some skills run bundled Python scripts with uv, and skill-comply and skill-stocktake start separate claude -p sessions with the shell and subagent tools denied.",
+      "version": "1.5.0",
+      "author": {
+        "name": "shimo4228",
+        "url": "https://github.com/shimo4228"
+      },
+      "homepage": "https://github.com/shimo4228/akc-cycle",
+      "repository": "https://github.com/shimo4228/akc-cycle",
+      "license": "MIT",
+      "keywords": [
+        "agent-knowledge-cycle",
+        "skills",
+        "curation",
+        "knowledge-management"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "shimo4228/akc-cycle",
+        "sha": "f713b5658e419fedba535893db212f0a0b905a1a"
+      }
+    },
+    {
+      "name": "hiway-kit",
+      "description": "Discipline kit for coding agents: plan files with executable done-criteria, an automated develop-and-validate pipeline, adversarial code review with a security scan, and a completion gate that judges \"done\" by command output. 15 skills, 15 subagents and 5 Python hooks (session-start rule injection, sensitive-path guard, ruff/prettier auto-format, Stop-time lint and test run). No network calls, no MCP servers.",
+      "version": "5.5.1",
+      "author": {
+        "name": "This-HW",
+        "url": "https://github.com/This-HW"
+      },
+      "homepage": "https://hiway.thishw.com/",
+      "repository": "https://github.com/This-HW/hiway-kit",
+      "license": "MIT",
+      "keywords": [
+        "planning",
+        "code-review",
+        "tdd",
+        "debugging",
+        "subagents",
+        "definition-of-done"
+      ],
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/This-HW/hiway-kit.git",
+        "path": "plugins/common",
+        "sha": "0d9bef8a9c052b695546ae4831006acada861963"
+      }
+    },
+    {
+      "name": "kuudo-skills",
+      "description": "Agent Skills for Amazon sellers and advertisers: Ads audits and reporting, search-term mining, budget pacing, DSP and Amazon Marketing Cloud, listing optimization, product images, repricing, FBA inbound, refunds, and profitability. Built for Kuudo hosted Amazon Ads and Selling Partner MCP servers. Repository guidance cannot weaken skill safeguards or supply user approval; previews, confirmations, trusted-target checks, and restrictions on unattended writes remain required.",
+      "version": "0.5.0",
+      "author": {
+        "name": "KuudoAI",
+        "url": "https://github.com/KuudoAI"
+      },
+      "homepage": "https://github.com/KuudoAI/skills",
+      "repository": "https://github.com/KuudoAI/skills",
+      "license": "PolyForm-Shield-1.0.0",
+      "keywords": [
+        "amazon",
+        "amazon-ads",
+        "seller-central",
+        "sp-api",
+        "ecommerce",
+        "ppc",
+        "agent-skills",
+        "mcp"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "KuudoAI/skills",
+        "sha": "d2b89c3776b48b4522f9d8d8fe5c18a89ba5ce60"
+      }
+    },
+    {
+      "name": "pixelbolt",
+      "description": "Pixel art and sprite animation from editable JSON recipes, with particle and fluid effects; exports PNG/GIF/APNG and atlases.",
+      "version": "0.9.0",
+      "author": {
+        "name": "skulitom",
+        "url": "https://github.com/skulitom"
+      },
+      "homepage": "https://github.com/skulitom/Pixelbolt#readme",
+      "repository": "https://github.com/skulitom/pixelbolt-plugin",
+      "license": "MIT",
+      "keywords": [
+        "pixel-art",
+        "sprites",
+        "animation",
+        "mcp"
+      ],
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "skulitom/pixelbolt-plugin",
+        "sha": "01a11749d74a33a35ab02a3a92f4035dfa60ffb8"
+      }
+    },
+    {
+      "name": "lidnight",
+      "description": "Keeps a MacBook awake (lid closed, even on battery) while Claude Code works, then lets it sleep when it's done. Three commands (/lidnight:awake, /lidnight:status, /lidnight:sleep) and a keep-awake skill that drive the Lidnight menu bar app through its CLI or lidnight:// URL. Without the app it only prints caffeinate/pmset guidance and installs or changes nothing. No hooks, no MCP servers, no settings.",
+      "version": "0.1.1",
+      "author": {
+        "name": "Dawon Lee",
+        "url": "https://github.com/whereisdw"
+      },
+      "homepage": "https://lidnight.app/en/",
+      "repository": "https://github.com/whereisdw/lidnight-claude-plugin",
+      "license": "MIT",
+      "keywords": [
+        "macos",
+        "sleep",
+        "caffeinate",
+        "lid-closed",
+        "overnight",
+        "battery"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "whereisdw/lidnight-claude-plugin",
+        "sha": "f54adf0da9c4fe31ff24631a3d7d0e3e8890dda2"
+      }
+    },
+    {
+      "name": "anode",
+      "description": "A hidden background Windows desktop for agents: GUI automation, UI Automation, screenshots and app testing without taking over your mouse.",
+      "version": "0.11.3",
+      "author": {
+        "name": "skulitom",
+        "url": "https://github.com/skulitom"
+      },
+      "homepage": "https://github.com/skulitom/Anode#readme",
+      "repository": "https://github.com/skulitom/Anode",
+      "license": "MIT",
+      "keywords": [
+        "windows",
+        "desktop-automation",
+        "gui-testing",
+        "mcp"
+      ],
+      "category": "automation",
+      "source": {
+        "source": "github",
+        "repo": "skulitom/Anode",
+        "sha": "dc368ecd2c1fdaaa9c6cd7a9dfe74ccf1a36e6ce"
+      }
+    },
+    {
+      "name": "lagos-diseno-es",
+      "description": "Three Claude Code skills for designers who build in Spanish: UI copy review in neutral Spanish with tú (voseo, vosotros, leftover English, title case, missing ¿¡), WCAG 2.2 contrast measured on the project's color tokens in light and dark mode with the nearest passing color, and a basic SEO pass over a built or live site. Three bundled Node 18+ scripts that read files and write only a report when passed --json; seo-basico fetches only the URL the user gives. No hooks, no MCP servers, no settings.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Carlos Lagos",
+        "url": "https://github.com/Clagoss"
+      },
+      "homepage": "https://carloslagos.cl/guias/",
+      "repository": "https://github.com/Clagoss/claude-code-para-disenadores",
+      "license": "MIT",
+      "keywords": [
+        "design",
+        "spanish",
+        "ux-writing",
+        "accessibility",
+        "wcag",
+        "contrast",
+        "design-tokens",
+        "seo"
+      ],
+      "category": "creative",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Clagoss/claude-code-para-disenadores.git",
+        "path": "plugins/lagos-diseno-es",
+        "sha": "162617f2652c0d3c84326b079d4deeac1a4625e0"
+      }
+    },
+    {
+      "name": "ainotate",
+      "description": "AInotate lets AI agents answer \"where is it?\" with an annotated screenshot: numbered steps, arrows, boxes and labels, with emails and tokens redacted.",
+      "version": "0.1.8",
+      "author": {
+        "name": "DontPayFull",
+        "url": "https://www.dontpayfull.com"
+      },
+      "homepage": "https://www.dontpayfull.com/labs/ainotate/",
+      "repository": "https://github.com/dontpayfull/AInotate",
+      "license": "AGPL-3.0-or-later",
+      "keywords": [
+        "screenshot",
+        "annotation",
+        "mcp"
+      ],
+      "category": "development",
+      "source": {
+        "source": "github",
+        "repo": "dontpayfull/AInotate",
+        "sha": "991620b9d0aabaa778e168aeed35d55300dd44e6"
+      }
+    },
+    {
+      "name": "zeptap",
+      "description": "Operate a real iPhone from Claude Code through a local MCP server in the Zeptap Mac app. Claude sees the screen over USB and taps and types over Bluetooth, with nothing installed on the phone. Tools include screenshot, find_text, tap, tap_text, type_text, open_app and unlock. The Mac app is closed source and paid (macOS 14+), with the first hour free.",
+      "version": "1.0.2",
+      "author": {
+        "name": "Zeptap",
+        "url": "https://zeptap.com"
+      },
+      "homepage": "https://zeptap.com/docs/agents/tools",
+      "repository": "https://github.com/Zeptap/mcp",
+      "license": "MIT",
+      "keywords": [
+        "iphone",
+        "ios",
+        "mobile",
+        "macos",
+        "mcp"
+      ],
+      "category": "mcp-servers",
+      "source": {
+        "source": "github",
+        "repo": "Zeptap/mcp",
+        "sha": "eb1bf1022b561d7c977cdfff47985c4a72c94c0d"
+      }
+    },
+    {
+      "name": "dex",
+      "description": "Analytics engineering skills for warehouse exploration, dbt and semantic modeling, and schema-drift maintenance. Three skills (explore, transform, maintain) drive a local engine: warehouse reads are read-only and cost-gated, and project edits come back as reviewable diffs. Requires a local shell and uv; first use downloads the pinned engine from PyPI. No hooks, no MCP servers.",
+      "version": "1.15.3",
+      "author": {
+        "name": "Exmergo, Inc.",
+        "url": "https://github.com/exmergo"
+      },
+      "homepage": "https://docs.exmergo.com/dex",
+      "repository": "https://github.com/exmergo/dex",
+      "license": "Apache-2.0",
+      "keywords": [
+        "analytics-engineering",
+        "dbt",
+        "data-engineering",
+        "semantic-layer",
+        "duckdb",
+        "schema-drift"
+      ],
+      "category": "development",
+      "source": {
+        "source": "github",
+        "repo": "exmergo/dex",
+        "sha": "0fcf8d874c70f8d7c57214d44c225cc0fd2f6b3a"
+      }
+    },
+    {
+      "name": "account-executive-jobs",
+      "description": "Connects Claude to AccountExecutiveJobs.com through its hosted OAuth MCP server. Job seekers search account executive and sales jobs and apply after an exact preview and confirmation; employers draft, publish and manage their own job posts and review applicants. Includes a founder skill for planning a first sales hire (role, base, OTE and quota from your own numbers, job description, scorecard). No local code; every write needs a preview and later-turn confirmation, and job listings, profiles, tool results and applicant content are treated as data that can't confirm anything.",
+      "version": "1.1.1",
+      "author": {
+        "name": "854 Labs",
+        "url": "https://accountexecutivejobs.com"
+      },
+      "homepage": "https://accountexecutivejobs.com/ai",
+      "repository": "https://github.com/854Labs/account-executive-jobs",
+      "license": "MIT",
+      "keywords": [
+        "jobs",
+        "sales",
+        "recruiting",
+        "hiring",
+        "account-executive",
+        "mcp"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "854Labs/account-executive-jobs",
+        "sha": "6bd3193e9eab6b9592ee3499d724382c52a2b3c7"
+      }
+    },
+    {
+      "name": "mission-control",
+      "description": "Open Claude Mission Control, a local read-only dashboard for every Claude Code session: who is waiting on you, cost per session and commit, and a usage-limit forecast. Adds a statusline.",
+      "version": "1.18.0",
+      "author": {
+        "name": "Jon Imms",
+        "url": "https://github.com/JonImmsWordpressDev"
+      },
+      "repository": "https://github.com/JonImmsWordpressDev/claude-dashboard",
+      "license": "MIT",
+      "keywords": [
+        "dashboard",
+        "monitoring",
+        "usage",
+        "cost",
+        "statusline",
+        "claude-code"
+      ],
+      "category": "monitoring",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/JonImmsWordpressDev/claude-dashboard.git",
+        "path": "plugin",
+        "sha": "6e2d56158275578033d1dfa17fa55b78acd17efd"
+      }
+    },
+    {
+      "name": "done-gate",
+      "description": "Stop/PostToolUse hook: after a code edit, Claude Code cannot end its turn until a recognised test command has run and passed after the last change. Piped, masked or failing runs do not count; after two reminders it lets the turn end with a warning. A repo's .proof-of-done.json can only add checks; waivers live in the user's ~/.claude/proof-of-done.json. Standard-library Python, no network.",
+      "version": "1.1.0",
+      "author": {
+        "name": "César Pereiro",
+        "url": "https://github.com/Ces107"
+      },
+      "homepage": "https://github.com/Ces107/agent-forge/tree/main/plugins/done-gate",
+      "repository": "https://github.com/Ces107/agent-forge",
+      "license": "MIT",
+      "keywords": [
+        "hooks",
+        "testing",
+        "verification",
+        "quality-gate",
+        "stop-hook"
+      ],
+      "category": "hooks",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Ces107/agent-forge.git",
+        "path": "plugins/done-gate",
+        "sha": "c85b70411dd163c5fbe04dbda234ae49cc3ea06a"
+      }
+    },
+    {
+      "name": "any-subagent",
+      "description": "Runs other coding-agent CLIs (Codex, opencode, Pi, Antigravity, another Claude Code) as background subagents through one agent-send command. Each delegated conversation has a name, so a follow-up resumes the same backend session with its context. Roles map to backends in user config, and each agent logs its spec and notes to a per-session file. One bash script and a skill; no hooks, no MCP servers.",
+      "version": "2.0.1",
+      "author": {
+        "name": "yw0nam",
+        "url": "https://github.com/yw0nam"
+      },
+      "homepage": "https://github.com/yw0nam/any-subagent",
+      "repository": "https://github.com/yw0nam/any-subagent",
+      "license": "MIT",
+      "keywords": [
+        "codex",
+        "opencode",
+        "pi",
+        "antigravity",
+        "delegation",
+        "subagents",
+        "multi-agent"
+      ],
+      "category": "orchestration",
+      "source": {
+        "source": "github",
+        "repo": "yw0nam/any-subagent",
+        "sha": "181ba387586651492a3cdca16c5da8a469b9b12d"
+      }
+    },
+    {
+      "name": "renhua",
+      "description": "Chinese writing in a real person's voice for Xiaohongshu, X, diaries and product copy: removes AI tells (emoji lists, slogans, 不是而是 contrasts, stock closing questions), writes results first with one earned punchline, with a viral Xiaohongshu title library and optional humor patterns.",
+      "version": "1.0.0",
+      "author": {
+        "name": "jack-reson8",
+        "url": "https://github.com/jack-reson8"
+      },
+      "homepage": "https://github.com/jack-reson8/renhua",
+      "repository": "https://github.com/jack-reson8/renhua",
+      "license": "MIT",
+      "keywords": [
+        "chinese",
+        "writing",
+        "copywriting",
+        "xiaohongshu",
+        "rednote",
+        "social-media"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/jack-reson8/renhua.git",
+        "path": "plugins/renhua",
+        "sha": "516146ab56c67036e7aa9972e5b8e7af2cf4160c"
+      }
+    },
+    {
+      "name": "mubboo-flights",
+      "description": "Prepare flight comparisons with airport lookup, validated trip inputs and ready-to-open search links. Free hosted MCP; no API key, live fares or bookings. MIT connection plugin; private hosted backend.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Mubboo LLC",
+        "url": "https://mubboo.flights"
+      },
+      "homepage": "https://mubboo.flights/mcp",
+      "repository": "https://github.com/Mubboo-Ai/mubboo-flights-mcp",
+      "license": "MIT",
+      "keywords": [
+        "travel",
+        "flights",
+        "comparison",
+        "mcp"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "Mubboo-Ai/mubboo-flights-mcp",
+        "sha": "b1d75f2ecbd8e235e6f7d417506c14efe77efe97"
+      }
+    },
+    {
+      "name": "post",
+      "description": "Share-image sets for Xiaohongshu and X that look native: App Store poster layout, real screenshots, faithful app-UI mocks, charts instead of tables, covers and a series layer for building in public, rendered from HTML templates to PNG.",
+      "version": "1.1.0",
+      "author": {
+        "name": "jack-reson8",
+        "url": "https://github.com/jack-reson8"
+      },
+      "homepage": "https://github.com/jack-reson8/post-skill",
+      "repository": "https://github.com/jack-reson8/post-skill",
+      "license": "MIT",
+      "keywords": [
+        "xiaohongshu",
+        "twitter",
+        "carousel",
+        "social-media",
+        "marketing",
+        "build-in-public"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/jack-reson8/post-skill.git",
+        "path": "plugins/post",
+        "sha": "3992c3b36115c5f336fcc8999f077a6343d43a91"
+      }
+    },
+    {
+      "name": "pro-motion",
+      "description": "Audio-first motion-graphics launch, brand and TVC films rendered in code (canvas to MP4) and cut to the music: music plan and generator prompts, beat analysis from the spectrogram, reference contact sheets, three style frames before building, a protagonist-driven shot map, a deterministic motion library, parallel rendering and per-language cuts.",
+      "version": "1.2.1",
+      "author": {
+        "name": "jack-reson8",
+        "url": "https://github.com/jack-reson8"
+      },
+      "homepage": "https://github.com/jack-reson8/pro-motion",
+      "repository": "https://github.com/jack-reson8/pro-motion",
+      "license": "MIT",
+      "keywords": [
+        "motion-graphics",
+        "video",
+        "launch-video",
+        "animation",
+        "music-sync",
+        "ffmpeg"
+      ],
+      "category": "creative",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/jack-reson8/pro-motion.git",
+        "path": "plugins/pro-motion",
+        "sha": "9d74577192a852a26fb37d5dff64000a8c7a8f7a"
+      }
+    },
+    {
+      "name": "agentkit-dev-skills",
+      "description": "13 MIT-licensed SKILL.md skills for everyday developer work: review-my-diff, repro-first-debugging, pr-description, safe-refactor, dependency-upgrade (shows the target version and files and waits for a yes before changing anything), explain-codebase, security-quick-review, prove-it-ran (make the agent show real test output before saying done), session-handoff, brag-doc-from-git, write-agents-md, agents-md-audit (with a small read-only Python audit script) and write-subagent. Skills only: no hooks, no MCP servers, no settings, no network calls.",
+      "version": "1.2.2",
+      "author": {
+        "name": "AgentKit Co",
+        "url": "https://github.com/agentkitco"
+      },
+      "homepage": "https://agentkitco.com/skills/",
+      "repository": "https://github.com/agentkitco/agentkit-dev-skills",
+      "license": "MIT",
+      "keywords": [
+        "skills",
+        "code-review",
+        "debugging",
+        "agents-md",
+        "subagents",
+        "pull-requests",
+        "refactoring"
+      ],
+      "category": "skills",
+      "source": {
+        "source": "github",
+        "repo": "agentkitco/agentkit-dev-skills",
+        "sha": "61ae2058fba5587b9300c6ca4a4240490f60c0e1"
+      }
+    },
+    {
+      "name": "buddy-chat",
+      "description": "End-to-end encrypted, quantum-resistant chat between Claude Code users: direct chats, groups and read receipts in a pane, with no server to run.",
+      "version": "0.21.2",
+      "author": {
+        "name": "MrMirhan",
+        "url": "https://github.com/MrMirhan"
+      },
+      "homepage": "https://github.com/MrMirhan/claude-buddy-chat",
+      "repository": "https://github.com/MrMirhan/claude-buddy-chat",
+      "license": "MIT",
+      "keywords": [
+        "chat",
+        "messaging",
+        "encryption",
+        "e2ee",
+        "post-quantum",
+        "claude-code",
+        "mod"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "MrMirhan/claude-buddy-chat",
+        "sha": "9b18f8303ad4d3ceb0365b410f570221701c4b96"
+      }
+    },
+    {
+      "name": "pro-launch",
+      "description": "Take an app or product from idea to launch, taste-first: positioning, naming with domain and trademark checks, reference hunting, style frames beside named references, feature map, UI build loop, launch video, GTM and shipping, with phase gates that force a real artifact before the next step.",
+      "version": "1.0.0",
+      "author": {
+        "name": "jack-reson8",
+        "url": "https://github.com/jack-reson8"
+      },
+      "homepage": "https://github.com/jack-reson8/pro-launch",
+      "repository": "https://github.com/jack-reson8/pro-launch",
+      "license": "MIT",
+      "keywords": [
+        "product",
+        "app-development",
+        "naming",
+        "branding",
+        "ui-design",
+        "launch",
+        "gtm"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/jack-reson8/pro-launch.git",
+        "path": "plugins/pro-launch",
+        "sha": "76b9a6500bc422a07242fe74149c3a7e09e089fd"
+      }
+    },
+    {
+      "name": "skill-skill",
+      "description": "Write, upgrade or audit Claude skills so they change what gets generated: distil rules from real corrections, turn them into required artifacts, gates and scripts, and lint any skill folder with a 0-100 health score (name, trigger clause, orphan and dangling files, oversized body).",
+      "version": "1.2.0",
+      "author": {
+        "name": "jack-reson8",
+        "url": "https://github.com/jack-reson8"
+      },
+      "homepage": "https://github.com/jack-reson8/skill-skill",
+      "repository": "https://github.com/jack-reson8/skill-skill",
+      "license": "MIT",
+      "keywords": [
+        "claude-skills",
+        "agent-skills",
+        "skill-creator",
+        "linter",
+        "audit",
+        "prompt-engineering"
+      ],
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/jack-reson8/skill-skill.git",
+        "path": "plugins/skill-skill",
+        "sha": "d1e1d984a2d05187a1800e81e374d571ec83b4d8"
+      }
+    },
+    {
+      "name": "tracekit",
+      "description": "Hooks that send each Claude Code tool call to a local Tracekit signer before it runs: allowed, denied with the rule that matched, or held until you approve it from another terminal. The signer signs every call, decision and result into a hash-chained record that `tracekit verify` checks offline. Needs the tracekit-ai Python package (`pip install tracekit-ai==1.4.2 && tracekit init --dev --v2 --no-hooks`). In that dev mode the signer runs as your own user; on Linux, system mode runs it as a separate user.",
+      "version": "1.4.2",
+      "author": {
+        "name": "Cygnux Labs",
+        "url": "https://github.com/Cygnux-Labs"
+      },
+      "homepage": "https://github.com/Cygnux-Labs/Tracekit/tree/9d1d74b7aee051d839b708a84741b1ea6b379852/plugin",
+      "repository": "https://github.com/Cygnux-Labs/Tracekit",
+      "license": "MIT",
+      "keywords": [
+        "security",
+        "hooks",
+        "pretooluse",
+        "approvals",
+        "audit-log",
+        "tamper-evident"
+      ],
+      "category": "security",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Cygnux-Labs/Tracekit.git",
+        "path": "plugin",
+        "ref": "main",
+        "sha": "9d1d74b7aee051d839b708a84741b1ea6b379852"
+      }
+    },
+    {
+      "name": "new-term-radar",
+      "description": "Three skills that find the names of new AI models, products and repos on X, Hugging Face, GitHub and sitemaps, then size the search terms behind them with Google Ads volume and DataForSEO Trends (prioritize / watch / skip). They run the pinned new-term-radar release from PyPI (uvx new-term-radar==0.6.1), state the cost in USD and wait for a yes before every paid run, show what would go out for the user (a post, a page, a submission) and wait for a yes before any of it, and treat fetched posts and pages as data. Needs an AIsa API key.",
+      "version": "0.6.1",
+      "author": {
+        "name": "Jason Zhu",
+        "url": "https://github.com/zhuyansen"
+      },
+      "homepage": "https://github.com/zhuyansen/new-term-radar",
+      "repository": "https://github.com/zhuyansen/new-term-radar",
+      "license": "MIT",
+      "keywords": [
+        "seo",
+        "keyword-research",
+        "google-trends",
+        "ai-trends"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "zhuyansen/new-term-radar",
+        "sha": "3cf6515c4076cb2800819473062d9b36d563d0fe"
+      }
+    },
+    {
+      "name": "usethisskill",
+      "description": "Find agent skills for a task, read side-by-side proofs of what they change, and safety-check any skill (even straight from a GitHub link) before installing. Adds the find-proven-skill skill and the hosted Use This Skill MCP server; no sign-in, no API key.",
+      "version": "1.2.0",
+      "author": {
+        "name": "Tineessa Nelson",
+        "url": "https://github.com/nodegenie"
+      },
+      "homepage": "https://usethisskill.com/connect",
+      "repository": "https://github.com/nodegenie/awesome-agent-skills",
+      "license": "CC0-1.0",
+      "keywords": [
+        "skills",
+        "agent-skills",
+        "skill-directory",
+        "security",
+        "mcp"
+      ],
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/nodegenie/awesome-agent-skills.git",
+        "path": "plugins/usethisskill",
+        "sha": "f976e495c719a2d0bee0431253f8de54c63345be"
+      }
+    },
+    {
+      "name": "site-traffic-teardown",
+      "description": "Competitor traffic and SEO teardown for any website: finds the competitors (Semrush organic competitors), screens them by Similarweb visits, pulls one side-by-side table (3-month trend, channel mix, Semrush keywords and backlinks, Ahrefs DR) and reads it into growth-engine types and three opportunities. Each stage quotes first for free and runs its billed calls only after the user says yes to that quote, and AIsa rows and pages read along the way stay data. Needs a paid AIsa API key and the AIsa CLI (npm i -g @aisa-one/cli@0.6.9), under $1 per domain.",
+      "version": "0.1.2",
+      "author": {
+        "name": "Jason Zhu",
+        "url": "https://github.com/zhuyansen"
+      },
+      "homepage": "https://github.com/zhuyansen/site-traffic-teardown",
+      "repository": "https://github.com/zhuyansen/site-traffic-teardown",
+      "license": "MIT",
+      "keywords": [
+        "seo",
+        "competitor-analysis",
+        "similarweb",
+        "semrush",
+        "ahrefs",
+        "traffic-analysis"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "zhuyansen/site-traffic-teardown",
+        "sha": "bd1067a0bfa275d2fe205ca27f69db9fac0172c3"
+      }
+    },
+    {
+      "name": "prompt-cache-tracker",
+      "description": "Shows how long your prompt cache has left and refreshes it before it expires, so your next message after a break doesn't pay to rebuild it.",
+      "version": "0.1.2",
+      "author": {
+        "name": "Hayk Mkrtchyan",
+        "url": "https://github.com/Hayk985"
+      },
+      "homepage": "https://github.com/Hayk985/prompt-cache-tracker",
+      "repository": "https://github.com/Hayk985/prompt-cache-tracker",
+      "license": "MIT",
+      "keywords": [
+        "prompt-cache",
+        "prompt-caching",
+        "cache",
+        "cache-ttl",
+        "cost-saving",
+        "claude-code",
+        "mod",
+        "tokens"
+      ],
+      "category": "monitoring",
+      "source": {
+        "source": "github",
+        "repo": "Hayk985/prompt-cache-tracker",
+        "sha": "b9aa93835579890dec6f81bdf1a26c54f6288ddb"
+      }
+    },
+    {
+      "name": "book-a-sponsor",
+      "description": "Newsletter sponsor data: give it a newsletter's web address and it finds similar newsletters and the brands that sponsored them, with the newsletter and date where each ad ran; lists brands sponsoring newsletters by topic; and gives the median price newsletters list for a sponsor slot by list size. Adds the book-a-sponsor skill and the hosted Book a Sponsor MCP server (https://bookasponsor.com/mcp); no sign-in, no API key. Brand-level data only: no people, emails or phone numbers.",
+      "version": "1.0.1",
+      "author": {
+        "name": "Sales.co",
+        "url": "https://bookasponsor.com"
+      },
+      "homepage": "https://bookasponsor.com/mcp",
+      "repository": "https://github.com/rdoyle99/book-a-sponsor-plugin",
+      "license": "MIT",
+      "keywords": [
+        "newsletter",
+        "sponsors",
+        "sponsorship",
+        "advertising",
+        "creators",
+        "mcp"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "rdoyle99/book-a-sponsor-plugin",
+        "sha": "8f6c32648e00fc12b3dd32753dfddaf9b7728893"
+      }
+    },
+    {
+      "name": "communitymentions",
+      "description": "Which subreddits AI answers cite: describe a product or niche and it returns the subreddits where it fits, with how often AI answers (OpenAI models, Perplexity, Gemini) cited each one and its member count; ask about one subreddit and it returns its citations by engine, the kinds of questions those answers were about, and its most-cited threads. Adds the communitymentions skill and the hosted CommunityMentions MCP server (https://communitymentions.com/api/mcp); read-only, no sign-in, no API key.",
+      "version": "1.0.1",
+      "author": {
+        "name": "CommunityMentions",
+        "url": "https://communitymentions.com"
+      },
+      "homepage": "https://communitymentions.com",
+      "repository": "https://github.com/rdoyle99/communitymentions-plugin",
+      "license": "MIT",
+      "keywords": [
+        "reddit",
+        "subreddits",
+        "ai search",
+        "reddit marketing",
+        "generative engine optimization",
+        "mcp"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "rdoyle99/communitymentions-plugin",
+        "sha": "077dc86e674cbf9a64e7c8701ee2b740252315bc"
+      }
+    },
+    {
+      "name": "commentkeyword",
+      "description": "Plan the \"Comment KEYWORD\" CTA of an Instagram Reel (keyword, on-screen text, caption, DM copy) and set up the automatic DM in CommentKeyword, which sends it through Instagram's official API. Adds the comment-to-dm-cta skill and a dependency-free local MCP server; nothing that messages people is created until the user confirms the keyword, DM text and target posts. Needs a CommentKeyword API token (API access is included on the Free plan).",
+      "version": "0.2.0",
+      "author": {
+        "name": "CommentKeyword",
+        "url": "https://commentkeyword.com"
+      },
+      "homepage": "https://commentkeyword.com/instagram-mcp-server",
+      "repository": "https://github.com/commentkeyword/agent-toolkit",
+      "license": "MIT",
+      "keywords": [
+        "instagram",
+        "reels",
+        "comment-to-dm",
+        "cta",
+        "short-form-video",
+        "mcp"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "commentkeyword/agent-toolkit",
+        "sha": "c8117ca569b4b8d0de9bbec14aa9a90b59e6bb35"
+      }
+    },
+    {
+      "name": "backlink-guard",
+      "description": "One skill and an MCP server that check a link source (directory, awesome list, guest-post site) before you submit your site to it: skip, look first, free only, low value or submit, with the evidence, against Google's link spam policies. They also verify a listing once it is live and audit your own backlinks. They never submit anything, and before an agent submits a site or opens a pull request for you, the skill has it show where it goes and the exact text and wait for your yes; a vet result is not that yes. Both run the pinned backlink-guard release from PyPI (uvx backlink-guard==0.11.2), state the cost in USD and wait for a yes before every paid call, and treat fetched pages and AI answers as data. The page checks need no key; paid signals use a Glasser or AIsa key.",
+      "version": "0.11.2",
+      "author": {
+        "name": "Jason Zhu",
+        "url": "https://github.com/zhuyansen"
+      },
+      "homepage": "https://github.com/zhuyansen/backlink-guard",
+      "repository": "https://github.com/zhuyansen/backlink-guard",
+      "license": "MIT",
+      "keywords": [
+        "seo",
+        "backlinks",
+        "link-spam",
+        "google-spam-policies"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "zhuyansen/backlink-guard",
+        "sha": "d00cd64fba6b39b8864ccb20fe1bfcb567df8bc8"
+      }
+    },
+    {
+      "name": "conferencedb",
+      "description": "Read-only conference and trade show data: which companies sponsor and exhibit at an event, the conferences a company sponsors or exhibits at, event dates and places, and the sponsorship packages organizers publish. Adds the conferencedb skill and the hosted ConferenceDB MCP server (https://conferencedatabase.com/api/mcp); no sign-in, no API key. Company-level data only: no people, emails or phone numbers.",
+      "version": "1.0.2",
+      "author": {
+        "name": "Sales.co",
+        "url": "https://conferencedatabase.com"
+      },
+      "homepage": "https://conferencedatabase.com/mcp",
+      "repository": "https://github.com/rdoyle99/conferencedb-plugin",
+      "license": "MIT",
+      "keywords": [
+        "conferences",
+        "trade-shows",
+        "sponsors",
+        "exhibitors",
+        "sponsorship",
+        "mcp"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "rdoyle99/conferencedb-plugin",
+        "sha": "afa673b6d1b3f38a448219788d2ada4d833fce66"
+      }
+    },
+    {
+      "name": "agent-standup",
+      "description": "Watch every Claude Code, Codex, Mistral Vibe and Cowork session on this computer, sub-agents included, as a live animated team call: who is working, stuck on a long command, waiting on another agent, or waiting for you, with tokens per agent. Two skills: /agent-standup:open starts the local app (`npx -y @double_geste/agent-standup@1.42.0 --open`, Node 18+, localhost:4747) and /agent-standup:status gives a one-line summary. Reads local session files only and sends nothing by default.",
+      "version": "1.42.0",
+      "author": {
+        "name": "Double Geste",
+        "url": "https://github.com/Atoll92"
+      },
+      "homepage": "https://agent-standup.com",
+      "repository": "https://github.com/Atoll92/agent-standup",
+      "license": "MIT",
+      "keywords": [
+        "agents",
+        "sub-agents",
+        "sessions",
+        "monitoring",
+        "standup",
+        "codex"
+      ],
+      "category": "monitoring",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Atoll92/agent-standup.git",
+        "path": "plugin",
+        "ref": "main",
+        "sha": "2c000166fd8694f6e741cee3a2ca1a7ba979c161"
+      }
+    },
+    {
+      "name": "agent-standup-band",
+      "description": "Mod (function hooks, Claude Code 2.1.294+): a line above your prompt when another Claude Code session on this computer needs you (an approval, an answer), and a toast when one finishes its turn. Reads only ~/.claude/sessions/*.json; no network, nothing installed.",
+      "version": "1.42.0",
+      "author": {
+        "name": "Double Geste",
+        "url": "https://github.com/Atoll92"
+      },
+      "homepage": "https://agent-standup.com",
+      "repository": "https://github.com/Atoll92/agent-standup",
+      "license": "MIT",
+      "keywords": [
+        "agents",
+        "sessions",
+        "notifications",
+        "standup"
+      ],
+      "category": "monitoring",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Atoll92/agent-standup.git",
+        "path": "plugin-band",
+        "ref": "main",
+        "sha": "2c000166fd8694f6e741cee3a2ca1a7ba979c161"
+      }
+    },
+    {
+      "name": "bestprice-shopping",
+      "description": "Read-only shopping decisions for Greece from BestPrice.gr: product search, current offers from Greek stores with delivered prices, price history, and a buy-now-or-wait decision for a product. Adds the bestprice-shopping skill and the hosted BestPrice MCP server (https://mcp.bestprice.gr/mcp); no sign-in, no API key. It never buys anything or touches a cart.",
+      "version": "2.8.1",
+      "author": {
+        "name": "BestPrice",
+        "url": "https://www.bestprice.gr/"
+      },
+      "homepage": "https://www.bestprice.gr/mcp",
+      "repository": "https://github.com/TheBestCo/bestprice-mcp",
+      "license": "Apache-2.0",
+      "keywords": [
+        "shopping",
+        "price-comparison",
+        "price-history",
+        "e-commerce",
+        "greece",
+        "mcp"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "TheBestCo/bestprice-mcp",
+        "sha": "19c00589b329aa814812333f0a7e2020acb7b16a"
+      }
+    },
+    {
+      "name": "keep-mac-awake",
+      "description": "Keep a MacBook with Apple silicon awake with the lid closed while long agent tasks run. Adds the keepmacawake skill and a read-only session-start hook: the agent starts a timed session of the Keep Mac Awake app before long work, stops it after, and tells you when the app needs something from you (AC power or a purchase). Needs the Keep Mac Awake app on macOS 26 or later, installed separately: a free 3-day trial, then 9 USD once per Mac. The plugin never uses sudo, downloads nothing and makes no network connection.",
+      "version": "1.0.4",
+      "author": {
+        "name": "Keep Mac Awake",
+        "url": "https://github.com/keepmacawake"
+      },
+      "homepage": "https://keepmacawake.com/?utm_source=buildwithclaude&utm_medium=referral&utm_campaign=listing",
+      "repository": "https://github.com/bartdudzic/keepmacawake",
+      "license": "MIT",
+      "keywords": [
+        "macos",
+        "macbook",
+        "lid-closed",
+        "keep-awake",
+        "sleep",
+        "long-running-tasks"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/bartdudzic/keepmacawake.git",
+        "path": "plugins/keep-mac-awake",
+        "sha": "f64ce3db2669311aeca40b21c1bdba9db4f1e56d"
+      }
+    },
+    {
+      "name": "ravenpost",
+      "description": "Ravenpost — draft, preview, schedule and publish social media posts to Instagram, TikTok, X, LinkedIn, Threads, Bluesky, YouTube, Pinterest and Telegram from Claude, and read followers and engagement. Every post is previewed first; a schedule is made only after you say yes to the accounts, caption and time, and a publish waits until you confirm it.",
+      "version": "1.3.1",
+      "author": {
+        "name": "Ravenpost",
+        "url": "https://ravenpo.st"
+      },
+      "homepage": "https://ravenpo.st/mcp/",
+      "repository": "https://github.com/target1m/ravenpost-mcp",
+      "license": "MIT",
+      "keywords": [
+        "social-media",
+        "scheduler",
+        "instagram",
+        "tiktok",
+        "x",
+        "linkedin",
+        "threads",
+        "bluesky",
+        "youtube",
+        "pinterest",
+        "mcp"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "target1m/ravenpost-mcp",
+        "sha": "f1f72b0a8b8338364394aec8dd747d69b4c76071"
+      }
+    },
+    {
+      "name": "wudland",
+      "description": "Shows Claude Code sessions as villagers in the Wudland iPhone app: working, waiting, done or failed. Updates are encrypted end to end over an ntfy relay; no account. The iPhone app is coming to the App Store.",
+      "version": "0.1.0",
+      "author": {
+        "name": "joexk1",
+        "url": "https://github.com/joexk1"
+      },
+      "homepage": "https://wudland.pages.dev",
+      "repository": "https://github.com/joexk1/wudland-plugins",
+      "license": "MIT",
+      "keywords": [
+        "notifications",
+        "monitoring",
+        "ios",
+        "pixel-art",
+        "claude-code"
+      ],
+      "category": "monitoring",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/joexk1/wudland-plugins.git",
+        "path": "claude-code",
+        "sha": "fa9250bc0e35b717fe11de06f4f34f09b8088b1a"
+      }
+    },
+    {
+      "name": "promptlike",
+      "description": "Your versioned prompt library inside Claude Code: fetch, fill and save prompts from your PromptLikeEngineer account, run them from the / menu, and get a local hint when a saved prompt fits what you ask. It can save prompts, add new versions and move prompts between repos and folders; there is no delete tool. Needs a PromptLikeEngineer account; a free plan is available.",
+      "version": "0.6.2",
+      "author": {
+        "name": "Zeynep Aslı Erhan",
+        "url": "https://promptlikeengineer.com"
+      },
+      "homepage": "https://promptlikeengineer.com/?utm_source=buildwithclaude&utm_medium=directory&utm_campaign=free-channels",
+      "repository": "https://github.com/zeynepaslierhann/promptlike-plugin",
+      "license": "MIT",
+      "keywords": [
+        "prompt",
+        "prompt-library",
+        "prompt-engineering",
+        "versioning",
+        "mcp",
+        "developer-tools"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "zeynepaslierhann/promptlike-plugin",
+        "sha": "20e85b054641ec074c6313482ca86ad59d0015a9"
+      }
+    },
+    {
+      "name": "testoptim",
+      "description": "Run AI QA tests on your web app from Claude Code and fix the bugs they find. The testoptim-qa skill re-tests the pages you changed with TestOptim, reads the critical and high issues (steps to reproduce, page URL, screenshot), fixes them and re-tests. It asks before every test run, because runs use your plan's executions. Needs a TestOptim account and an API key, which the plugin asks for at install.",
+      "version": "1.1.1",
+      "author": {
+        "name": "TestOptim",
+        "url": "https://www.testoptim.com/"
+      },
+      "homepage": "https://www.testoptim.com/verify-coding-agent-changes",
+      "repository": "https://github.com/TestOptim-AI/testoptim-mcp",
+      "license": "MIT",
+      "keywords": [
+        "qa",
+        "testing",
+        "e2e",
+        "test-automation",
+        "bug-reports",
+        "mcp"
+      ],
+      "category": "development",
+      "source": {
+        "source": "github",
+        "repo": "TestOptim-AI/testoptim-mcp",
+        "sha": "ad4493a91d83c22d0f1406656c1293028b2acc53"
+      }
+    },
+    {
+      "name": "logbrew",
+      "description": "Fix production bugs with LogBrew error tracking, performance monitoring, logs, and product analytics. Connects the hosted LogBrew MCP server over OAuth and adds 4 skills: debug a production error, instrument an app, read product analytics, and check a release. Reads only the projects you approve. Every step that creates, installs, records, or changes something shows the exact command and waits for your yes. Generous free tier, no card needed.",
+      "version": "0.3.2",
+      "author": {
+        "name": "LogBrew",
+        "url": "https://logbrew.co"
+      },
+      "homepage": "https://logbrew.co",
+      "repository": "https://github.com/LogBrewCo/skills",
+      "license": "MIT",
+      "keywords": [
+        "debugging",
+        "error-tracking",
+        "logging",
+        "tracing",
+        "observability",
+        "releases",
+        "mcp"
+      ],
+      "category": "monitoring",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/LogBrewCo/skills.git",
+        "path": "plugins/logbrew",
+        "sha": "976224b269dc28556cc43794269972ce737a1dc2"
+      }
+    },
+    {
+      "name": "popnow",
+      "description": "Generate AI images, videos, music and speech from Claude Code through the PopNow API: Nano Banana, GPT Image, Seedream, FLUX, Kling, Seedance, MiniMax and Suno behind one key, plus workflow skills for launch films, explainer videos, social covers, landing pages and brand kits. Every paid run is quoted in USD and waits for an explicit yes. Needs a PopNow API key with a prepaid balance.",
+      "version": "1.1.0",
+      "author": {
+        "name": "PopNow",
+        "url": "https://popnow.ai"
+      },
+      "homepage": "https://popnow.ai/?utm_source=buildwithclaude&utm_medium=directory",
+      "repository": "https://github.com/popnow-ai/popnow-skills",
+      "license": "MIT",
+      "keywords": [
+        "ai-video",
+        "text-to-video",
+        "ai-image",
+        "text-to-image",
+        "ai-music",
+        "text-to-speech"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "popnow-ai/popnow-skills",
+        "sha": "3706861470db1c53d643bbebc80f051f2af7ee81"
+      }
+    },
+    {
+      "name": "deja-vu",
+      "description": "deja-vu memory for Claude Code: your own past sessions, from every coding agent on the machine, recalled before you ask. Indexes the session files 44 agents (Claude Code, Codex, Cursor, opencode and more) already wrote to disk into a local BM25 index, and adds an MCP server, a /deja command, a skill and hooks that recall at session start, on each prompt and before edits or commands. No LLM, no embeddings, no network. Needs the deja binary (brew, npm, scoop or winget).",
+      "version": "0.23.5",
+      "author": {
+        "name": "vshulcz",
+        "url": "https://github.com/vshulcz"
+      },
+      "homepage": "https://vshulcz.github.io/deja-vu/guide/memory-for-claude-code.html",
+      "repository": "https://github.com/vshulcz/deja-vu",
+      "license": "MIT",
+      "keywords": [
+        "memory",
+        "session-history",
+        "recall",
+        "context",
+        "claude-code",
+        "codex",
+        "cursor",
+        "copilot-cli"
+      ],
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/vshulcz/deja-vu.git",
+        "path": "claude-plugin",
+        "sha": "cc8d0d05cd4392c3943f9c2c92ce96daba3ce3de"
+      }
+    },
+    {
+      "name": "event-sponsorship-skills",
+      "description": "Skills for event and conference sponsorship work on live data: sponsorship context, find sponsors for an event, price packages, draft a prospectus, draft sponsor outreach, vet a trade show, budget a booth, track where competitors exhibit, build an events calendar. Adds 9 skills and the hosted ConferenceDB MCP server (https://conferencedatabase.com/api/mcp); no sign-in, no API key. Company-level data only: no people, emails or phone numbers. Drafting only: no skill sends anything.",
+      "version": "1.0.1",
+      "author": {
+        "name": "Ryan Doyle",
+        "url": "https://conferencedatabase.com"
+      },
+      "homepage": "https://github.com/rdoyle99/event-sponsorship-skills",
+      "repository": "https://github.com/rdoyle99/event-sponsorship-skills",
+      "license": "MIT",
+      "keywords": [
+        "conferences",
+        "trade-shows",
+        "sponsorship",
+        "sponsors",
+        "exhibitors",
+        "events",
+        "mcp"
+      ],
+      "category": "sales-marketing",
+      "source": {
+        "source": "github",
+        "repo": "rdoyle99/event-sponsorship-skills",
+        "sha": "ab7be58382021625db3e5dc85d73318a5b481424"
+      }
+    },
+    {
+      "name": "pharon",
+      "description": "Pharon, the warning light for your stack: keeps a local inventory of your packages, runtimes, container images, CI actions and services, and alerts your team when a compromised release, an exploited vulnerability, a vendor breach or an end-of-life date reaches it. Scans run on your machine and only the inventory is uploaded, after you approve the first upload in /pharon:setup. Needs a Pharon account; a 7-day free trial is available.",
+      "version": "0.1.2",
+      "author": {
+        "name": "Pharon",
+        "url": "https://getpharon.com"
+      },
+      "homepage": "https://getpharon.com",
+      "repository": "https://github.com/getpharon/pharon",
+      "license": "Apache-2.0",
+      "keywords": [
+        "security",
+        "supply-chain",
+        "vulnerabilities",
+        "end-of-life",
+        "sbom",
+        "incident-response"
+      ],
+      "category": "security",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/getpharon/pharon.git",
+        "path": "pharon-plugin",
+        "sha": "25eba28b64b35da835317448f2ac7409c1c4074b"
+      }
     }
   ]
 }

@@ -7,6 +7,7 @@ import { ArrowLeft, Copy, Download, Check, ExternalLink, Terminal, Star, GitBran
 import { type Skill } from '@/lib/skills-types'
 import { generateSkillMarkdown } from '@/lib/utils'
 import { generateCategoryDisplayName } from '@/lib/category-utils'
+import { formatDate } from '@/lib/format-date'
 
 const getOpenClawCommand = (slug: string) =>
   `curl -sL https://buildwithclaude.com/api/skills/${slug}/download -o /tmp/${slug}.zip && unzip -o /tmp/${slug}.zip -d ~/.claude/skills/ && rm /tmp/${slug}.zip`
@@ -25,14 +26,6 @@ function importedGithubUrl(repository: string, sourcePath?: string): string {
   return sourcePath
     ? `https://github.com/${short}/blob/HEAD/${sourcePath.replace(/^\/+/, '')}`
     : `https://github.com/${short}`
-}
-
-function formatDate(iso: string): string {
-  try {
-    return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
-  } catch {
-    return iso
-  }
 }
 
 interface SkillPageClientProps {
@@ -69,7 +62,8 @@ export function SkillPageClient({ skill }: SkillPageClientProps) {
     window.location.href = `/api/skills/${skill.slug}/download`
   }
 
-  const lines = skill.content.split('\n')
+  // Skip leading blank lines so the card text starts at its padding
+  const lines = skill.content.replace(/^\s*\n/, '').split('\n')
   const formattedContent = lines.map((line, i) => {
     if (line.startsWith('## ')) {
       return <h2 key={i} className="text-xl font-medium mt-6 mb-3">{line.replace('## ', '')}</h2>
@@ -87,7 +81,7 @@ export function SkillPageClient({ skill }: SkillPageClientProps) {
       return <div key={i} className="font-mono text-sm bg-muted p-2 rounded my-2">{line}</div>
     }
     if (line.trim()) {
-      return <p key={i} className="mb-3">{line}</p>
+      return <p key={i} className="mb-3 wrap-break-word">{line}</p>
     }
     return <br key={i} />
   })
@@ -96,7 +90,7 @@ export function SkillPageClient({ skill }: SkillPageClientProps) {
     <div className="min-h-screen">
       <div className="container mx-auto px-4 py-12 max-w-3xl">
         {/* Back */}
-        <Link href="/skills" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
+        <Link href="/skills" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground -mt-1 py-1 mb-7">
           <ArrowLeft className="h-4 w-4" />
           Back to Skills
         </Link>
@@ -104,8 +98,8 @@ export function SkillPageClient({ skill }: SkillPageClientProps) {
         {/* Header */}
         <div className="mb-10">
           <div className="flex items-start justify-between gap-4 mb-4">
-            <h1 className="text-display-2">{skill.name}</h1>
-            <div className="flex gap-2">
+            <h1 className="text-display-2 min-w-0 wrap-break-word">{skill.name}</h1>
+            <div className="flex gap-2 shrink-0">
               <Button size="sm" variant="ghost" onClick={handleCopy}>
                 {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
               </Button>
@@ -138,7 +132,7 @@ export function SkillPageClient({ skill }: SkillPageClientProps) {
                 href={skill.repository}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-foreground underline-offset-4 hover:underline"
+                className="inline-flex items-center gap-1.5 py-1 -my-1 hover:text-foreground underline-offset-4 hover:underline"
               >
                 <GitBranch className="h-4 w-4" />
                 {repoShortName(skill.repository)}
@@ -192,7 +186,7 @@ export function SkillPageClient({ skill }: SkillPageClientProps) {
               Install this skill with a single command using <a href="https://github.com/vercel-labs/skills" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">npx skills</a>. Works with Claude Code, Cursor, Windsurf, and other agents.
             </p>
             <div className="bg-card rounded-lg p-4 font-mono text-sm flex items-center justify-between gap-2 border border-border">
-              <span className="break-all">{installCommand}</span>
+              <span className="min-w-0 wrap-anywhere">{installCommand}</span>
               <Button
                 size="sm"
                 variant="ghost"
@@ -269,7 +263,7 @@ export function SkillPageClient({ skill }: SkillPageClientProps) {
                     One-line install
                   </p>
                   <div className="bg-card rounded-lg p-4 font-mono text-sm flex items-center justify-between gap-2 border border-border">
-                    <span className="break-all">{getOpenClawCommand(skill.slug)}</span>
+                    <span className="min-w-0 wrap-anywhere">{getOpenClawCommand(skill.slug)}</span>
                     <Button
                       size="sm"
                       variant="ghost"
@@ -312,7 +306,7 @@ export function SkillPageClient({ skill }: SkillPageClientProps) {
         {skill.content.trim() && (
           <div className="mb-10">
             <h2 className="text-lg font-medium mb-4">Skill Instructions</h2>
-            <div className="bg-card rounded-lg p-6 border border-border prose prose-sm max-w-none">
+            <div className="bg-card rounded-lg p-6 border border-border prose prose-sm max-w-none wrap-break-word">
               {formattedContent}
             </div>
           </div>
